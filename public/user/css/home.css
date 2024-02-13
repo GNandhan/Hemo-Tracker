@@ -1,0 +1,102 @@
+/* Preloader animations */
+/* Preloader */
+.preloader {
+	position: absolute;
+	width: 102px;
+	height: 102px;
+	left: 50%;
+	top: 50%;
+	min-height: 102px;
+	transform: translateX(-50%) translateY(-50%);
+}
+.preloader .small-circle {
+  stroke: rgb(255, 0, 0);
+	stroke-dasharray: 200;
+	stroke-dashoffset: 200;
+	transform-origin: 50%;
+    animation: 1s draw-small infinite alternate;
+}
+@keyframes draw-small {
+	0% { stroke-dashoffset: 0; transform: rotate(0deg); }
+	100% { stroke-dashoffset: 210; transform: rotate(360deg); }
+}
+.preloader .big-circle {
+  stroke: rgb(255, 0, 0);
+	stroke-dasharray: 220;
+	stroke-dashoffset: 220;
+	transform-origin: 50%;
+    animation: 1s draw-big infinite alternate 0.5s;
+}
+@keyframes draw-big {
+	0% { stroke-dashoffset: 0; transform: rotateY(180deg) rotate(360deg); }
+	100% { stroke-dashoffset: 240; transform: rotateY(180deg) rotate(0deg); }
+}
+.page {
+  display: none;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* Preloader animations closed */
+.animated-image {
+    animation: moveImage 10s ease-in-out infinite alternate ;
+}
+@keyframes moveImage {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(20px, 20px);
+    }
+    50% {
+        transform: translate(10px, -10px);
+    }
+    75% {
+        transform: translate(-10px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+.but {
+    position: relative;
+    overflow: hidden;
+    /* height: 3rem; */
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: #3617e9;
+    background-size: 400%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  .but:hover::before {
+    transform: scaleX(1);
+  }
+  .but-content {
+    position: relative;
+    z-index: 1;
+  }
+  .but::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(
+      82.3deg,
+      rgb(255, 0, 0) 10.8%,
+      rgba(255, 0, 0, 0.24) 94.3%
+    );
+    transition: all 0.475s;
+  }
+  

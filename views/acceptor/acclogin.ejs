@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceptor-Login</title> 
+    <link rel="stylesheet" href="/user/css/home.css">
+    <link rel="icon" href="/user/images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+        body{
+            font-family: "Questrial";
+        }
+        .cascading-left {
+        margin-left: -50px;
+      }
+  
+      @media (max-width: 991.98px) {
+        .cascading-right {
+          margin-left: 0;
+        }
+      }
+    </style>
+</head>
+<body class="main">
+  <!-- Preloader -->
+  <div class="preloader">
+    <svg viewBox="0 0 102 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path class="big-circle" d="M101 51C101 78.6142 78.6142 101 51 101C23.3858 101 1 78.6142 1 51" stroke="#252525" stroke-width="2"/>
+			<path class="small-circle" d="M91 51C91 28.9086 73.0914 11 51 11C28.9086 11 11 28.9086 11 51" stroke="#252525" stroke-width="2"/>
+		</svg>
+  </div>
+<!-- for display after the preloader -->
+  <div class="page">
+    <!-- navbar -->
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
+          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <img src="/user/images/icon.png" class="bi me-2" width="50" height="50"><use xlink:href="#bootstrap"/>
+            <span class="fs-4" style="font-family: 'Questrial';">Hemo  <span class="text-danger">Tracker</span></span>
+          </a>
+          <ul class="nav">
+            <!-- <li class="nav-item"><a href="/" class="nav-link text-dark">Home</a></li> -->
+            <!-- <li class="nav-item"><a href="/about" class="nav-link text-dark">About</a></li> -->
+            <!-- <li class="nav-item"><a href="/about" class="nav-link text-dark">Contact</a></li> -->
+            <li class="nav-item"><a href="/accept/acclog" class="nav-link text-danger border-bottom border-danger">Login</a></li>
+          </ul>
+        </header>
+    </div>
+    <!-- navbar closed -->
+    
+    <!-- Section: Design Block -->
+<section class="text-center text-lg-start">
+    <!-- Jumbotron -->
+    <div class="container py-4">
+      <div class="row g-0 align-items-center justify-content-center">
+        <div class="col-lg-6 mb-5 mb-lg-0">
+          <img src="/user/images/acceptor.jpg" class="w-100 rounded-4 shadow-4" alt="" />
+        </div>
+        <div class="col-lg-3 mb-5 mb-lg-0">
+          <div class="card cascading-left rounded-4" style="
+              background: hsla(0, 0%, 100%, 0.55);
+              backdrop-filter: blur(30px);
+              ">
+            <div class="card-body p-5 shadow-5 text-center">
+              Acceptor
+              <h2 class="fw-bold mb-5"><span class="text-danger">Sign up</span> now</h2>
+              <form action="/accept/acclog" method="post">
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3">Email address</label>
+                  <input type="email" id="form3Example3" class="form-control rounded-pill" name="accmail" required/>
+                </div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example4">Password</label>
+                  <input type="password" id="form3Example4" class="form-control rounded-pill" name="accpass" required/>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-danger rounded-pill btn-block mb-4">
+                  Sign up
+                </button>
+  
+                <!-- Register buttons -->
+                <div class="text-center">
+                  <p>or sign up with:</p>
+                  <a href="/accept/accreg" type="button" class="btn btn-link border-danger rounded-pill px-4 shadow-lg btn-floating mx-1">
+                    <i class="bi bi-person-plus text-danger"></i>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Jumbotron -->
+  </section>
+  <!-- Section: Design Block -->
+       <!-- footer -->
+       <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+          <div class="col-md-4 d-flex align-items-center">
+            <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+              <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+            </a>
+            <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+          </div>
+      
+          <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+            <li class="ms-3"><a class="text-body-secondary" href="#"><img src="/user/images/icon-twitter.png" width="24" height="24" alt="twitter icon"></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><img src="/user/images/icon-facebook.png" width="24" height="24" alt="facebook icon"></a></li>
+            <li class="ms-3"><a class="text-body-secondary" href="#"><img src="/user/images/icon-instagram.png" width="24" height="24" alt="instagram icon"></a></li>
+          </ul>
+        </footer>
+      </div>
+
+
+  </div>
+        <script>
+        window.addEventListener("load", function () {
+        const preloader = document.querySelector(".preloader");
+        const page = document.querySelector(".page");
+        
+        setTimeout(function () {
+          preloader.style.display = "none";
+          page.style.display = "block";
+        }, 1000); // Replace 2000 with the desired delay in milliseconds
+      });
+      </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

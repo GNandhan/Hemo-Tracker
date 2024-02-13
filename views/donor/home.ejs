@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donor-Home</title>
+  <link rel="stylesheet" href="user/css/home.css">
+  <link rel="icon" href="user/images/icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
+
+    body {
+      background-image: url(user/images/bg1.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center; 
+      /* background-attachment: fixed;  */
+      font-family: "Questrial";
+    }
+  </style>
+</head>
+
+<body class="main">
+  <!-- Preloader -->
+  <div class="preloader">
+    <svg viewBox="0 0 102 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="big-circle" d="M101 51C101 78.6142 78.6142 101 51 101C23.3858 101 1 78.6142 1 51" stroke="#252525"
+        stroke-width="2" />
+      <path class="small-circle" d="M91 51C91 28.9086 73.0914 11 51 11C28.9086 11 11 28.9086 11 51" stroke="#252525"
+        stroke-width="2" />
+    </svg>
+  </div>
+  <!-- for display after the preloader -->
+  <div class="page">
+    <!-- navbar -->
+    <div class="container">
+      <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <img src="user/images/icon.png" class="bi me-2" width="50" height="50">
+          <use xlink:href="#bootstrap" />
+          <span class="fs-4" style="font-family: 'Questrial';">Hemo  <span class="text-danger">Tracker</span></span>
+        </a>
+        <ul class="nav">
+          <li class="nav-item"><a href="/" class="nav-link text-danger border-bottom border-danger">Home</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link text-dark">About</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link text-dark">Contact</a></li>
+          <li class="nav-item"><a href="/dlog" class="nav-link text-dark">Logout</a></li>
+        </ul>
+      </header>
+    </div>
+    <!-- navbar closed -->
+    <!-- first row -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-md col-sm-12 col-12 py-5">
+          <h1 class="display-3 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving life
+          </h1>
+          <a class="btn but but-comtent btn-danger px-5 rounded-pill">DONATE NOW</a>
+        </div>
+        <div class="col-lg-6 col-md col-sm-12 col-12">
+          <img src="user/images/img3.png" alt="" width="100%" class="animated-image">
+        </div>
+      </div>
+    </div>
+    <!-- first row closed -->
+    <!-- second row -->
+    <div class="container">
+      <div class="row bg-danger shadow rounded-4 p-3">
+        <div class="col-lg col-md col-sm col px-5 mx-5">
+          <form action="" class="d-flex">            
+            <input class="form-control px-5" type="text" placeholder="Search Location" style="width: 33.33%;">
+            <select class="form-select px-5 mx-2" name="" id="" style="width: 33.33%;">
+              <option selected>Blood Group</option>
+              <option value="">A+</option>
+              <option value="">A-</option>
+              <option value="">B+</option>
+              <option value="">B-</option>
+              <option value="">AB+</option>
+              <option value="">AB-</option>
+              <option value="">O+</option>
+              <option value="">O-</option>
+            </select>
+            <a href="" class="btn btn-danger border-light rounded-4 px-5" style="width: 33.33%;">Find Acceptor</a>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- second row closed -->
+        <!-- Display acceptor list -->
+        <div class="container">
+          <h2 class="mt-5">Acceptor List</h2>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <% acceptors.forEach((acceptor)=> { %>
+              <div class="col">
+                <div class="card rounded-4 red-shadow border border-end-0 border-danger" data-bs-toggle="collapse" href="#collapseExample<%= acceptor.id %>" role="button" aria-expanded="false" aria-controls="collapseExample<%= acceptor.id %>">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= acceptor.acc_fname %> <%= acceptor.acc_lname %>
+                    </h5>
+                    <p class="card-text">Blood Group: <%= acceptor.acc_blood %></p>
+                    <!-- Add more acceptor details here as needed -->
+                    
+                    <!-- Add more details as needed -->
+                  </div>
+                </div>
+                <div class="collapse" id="collapseExample<%= acceptor.id %>">
+                  <div class="card card-body">
+                    <!-- Additional acceptor details or actions can be added here -->
+                    <p class="card-text">Gender: <%= acceptor.acc_gender %></p>
+                    <p class="card-text">Age: <%= acceptor.acc_age %></p>
+                    <p class="card-text">Date of Birth: <%= acceptor.acc_dob %></p>
+                    <p class="card-text">Email: <%= acceptor.acc_mail %></p>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+    
+          </div>
+        </div>
+        <!-- acceptor list closed -->
+    <!-- About  -->
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">About <span class="text-danger">Hemo-Tracker</span></h1>
+          <p class="lead">The system incorporates two primary functions: donor registration and acceptor request
+            management. Donors can easily register on the platform, providing essential information such as personal
+            details, blood type, and contact information. The system ensures data security and privacy, adhering to
+            regulatory standards for healthcare information.</p>
+        </div>
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="user/images/img2.png" class="animated-image d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
+            height="500" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <!-- About Closed -->
+    <!--  Service-->
+    <div class="container px-4 py-5" id="hanging-icons">
+      <h2 class="pb-2 border-bottom">Our Services</h2>
+      <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+          <div
+            class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <img src="user/images/icon-clock.png" width="30" height="30" alt="clock icon">
+          </div>
+          <div>
+            <h3 class="fs-2 text-body-emphasis">24x7 Support</h3>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
+              probably just keep going until we run out of words.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div
+            class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <img src="user/images/icon-donor.png" width="35" height="35" alt="clock icon">
+          </div>
+          <div>
+            <h3 class="fs-2 text-body-emphasis">Real-time Availability</h3>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
+              probably just keep going until we run out of words.</p>
+          </div>
+        </div>
+        <div class="col d-flex align-items-start">
+          <div
+            class="icon-square text-body-emphasis d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+            <img src="user/images/icon-message.png" width="30" height="30" alt="clock icon">
+          </div>
+          <div>
+            <h3 class="fs-2 text-body-emphasis">Notification System</h3>
+            <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and
+              probably just keep going until we run out of words.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Service closed -->
+    <!-- footer -->
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24">
+              <use xlink:href="#bootstrap" />
+            </svg>
+          </a>
+          <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
+        </div>
+
+        <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+          <li class="ms-3"><a class="text-body-secondary" href="#"><img src="user/images/icon-twitter.png" width="24"
+                height="24" alt="twitter icon"></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="#"><img src="user/images/icon-facebook.png" width="24"
+                height="24" alt="facebook icon"></a></li>
+          <li class="ms-3"><a class="text-body-secondary" href="#"><img src="user/images/icon-instagram.png" width="24"
+                height="24" alt="instagram icon"></a></li>
+        </ul>
+      </footer>
+    </div>
+
+
+  </div>
+  <script>
+    window.addEventListener("load", function () {
+      const preloader = document.querySelector(".preloader");
+      const page = document.querySelector(".page");
+
+      setTimeout(function () {
+        preloader.style.display = "none";
+        page.style.display = "block";
+      }, 1000); // Replace 2000 with the desired delay in milliseconds
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

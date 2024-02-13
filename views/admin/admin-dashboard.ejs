@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin-Dashboard</title>
+  <link rel="shortcut icon" type="image/png" href="/admin/images/icon.png" />
+  <link rel="stylesheet" href="/admin/css/styles.min.css" />
+</head>
+
+<body>
+   <!-- including navbar -->
+   <%- include("admin-nav") %>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <!--  Row 1 -->
+
+        <div class="row">
+          <div class="col-sm col-xl">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">Total Users</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0">50</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm col-xl">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">No of Acceptors</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0">650</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm col-xl">
+            <div class="card overflow-hidden rounded-2">
+              <div class="card-body pt-3 p-4">
+                <h6 class="fw-semibold fs-4">No of Donors</h6>
+                <div class="d-flex align-items-center justify-content-between">
+                  <h6 class="fw-semibold fs-4 mb-0">150</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/admin/js/sidebarmenu.js"></script>
+  <script src="/admin/js/app.min.js"></script>
+  <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
+  <script src="/admin/js/dashboard.js"></script>
+</body>
+
+</html>
