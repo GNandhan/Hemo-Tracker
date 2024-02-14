@@ -139,6 +139,7 @@ app.post('/accept/acclog', encoder, function (req, res) {
            // Save user data in session upon successful login
           req.session.user = results[0];
           console.log("User logged in successfully!");
+          console.log("Acceptor details:", req.session.user); // Log acceptor details
           res.redirect('/accept/acchom');
       } else {
           // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
@@ -146,9 +147,8 @@ app.post('/accept/acclog', encoder, function (req, res) {
           res.redirect('/accept/acclog'); 
       }
   });
-  });
+});
 // -----------------------------------------------------------------------------------
-// Route to render the page and fetch donor data and locations
 // Route to render the page and fetch donor data and locations
 app.get('/accept/acchom', (req, res) => {
   // Fetch location and blood group from query parameters
@@ -163,7 +163,7 @@ app.get('/accept/acchom', (req, res) => {
     query += ' WHERE don_location = ? AND don_blood = ?';
     queryParams.push(location, bloodGroup);
   } else if (location) {
-    query += ' WHERE don_location = ?';
+    query += ' WHERE don_location = ?'; 
     queryParams.push(location);
   } else if (bloodGroup) {
     query += ' WHERE don_blood = ?';
@@ -189,28 +189,43 @@ app.get('/accept/acchom', (req, res) => {
     }
   });
 });
+// -------------------------------------------------------------------------------------
+// Route to handle sending request
+app.post('/accept/sendRequest', encoder, function (req, res) {
+  // Retrieve donor ID from the form
+  const donorId = req.body.donorId;
 
-// Route to render the page and fetch acceptor data and locations
-app.get('/home', (req, res) => {
-  // Fetch donor data
-  connection.query('SELECT * FROM acceptor', (error, acceptResults, fields) => {
-    if (error) {
-      console.log('Error fetching acceptor data from the database:', error);
-      res.status(500).send('Internal Server Error');
-    } else {
-      // Fetch unique locations from donor data
-      connection.query('SELECT DISTINCT acc_location FROM acceptor', (error, locationResults, fields) => {
-        if (error) {
-          console.log('Error fetching locations from the database:', error);
-          res.status(500).send('Internal Server Error');
-        } else {
-          // Pass donor data and locations to the template
-          res.render('donor/home', { acceptors: acceptResults, locations: locationResults });
-        }
-      });
-    }
-  });
+  // Log donorId to check its value
+  console.log("Donor ID:", donorId);
+
+  // Retrieve acceptor details from the session or wherever you store them
+  const acceptorDetails = req.session.user; // Adjust accordingly
+
+  // Check if acceptor details are available
+  if (!acceptorDetails || !acceptorDetails.acc_id) {
+    console.error("Acceptor details not found in session.");
+    console.log("Session data:", req.session); // Log session data
+    return res.status(500).send("Error sending request. Acceptor details not found.");
+  }
+
+  // Log acceptor details for debugging
+  console.log("Acceptor details:", acceptorDetails);
+
+  // Store the request details in the database
+  connection.query("INSERT INTO `request` (`donor_id`, `acceptor_id`, `status`) VALUES (?, ?, 'pending')",
+    [donorId, acceptorDetails.acc_id], (error, results, fields) => {
+      if (error) {
+        console.error("Error inserting request data into database:", error.message);
+        return res.status(500).send("Error sending request.");
+      }
+
+      // Request sent successfully!
+      console.log("Request sent successfully!");
+      res.redirect('/accept/acchom'); // Redirect back to the donor list page
+    });
 });
+
+
 //--------------------------------------------------------------------------------------
 // Route to handle login form submission
 app.post('/admin/adlog', encoder, function (req, res) {
@@ -230,15 +245,43 @@ app.post('/admin/adlog', encoder, function (req, res) {
           console.log("User logged in successfully!");
           res.redirect('/admin/addash');
       } else {
-          // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
+          // If user does not exist or credentials are incorrect, redirect back to login page with an error query parameter
           console.log("Invalid email or password");
-          res.redirect('/admin/acclog'); 
+          res.redirect('/admin/adlog?error=1'); 
       }
   });
-  });
+});
+
 // -----------------------------------------------------------------------------------
+// Route to render the donor page and fetch donor data
+app.get('/admin/addonor', (req, res) => {
+  // Fetch donor data from the database
+  connection.query('SELECT * FROM donor', (error, donorResults, fields) => {
+    if (error) {
+      console.log('Error fetching donor data from the database:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      // Pass donor data to the template
+      res.render('admin/admin-donor', { donors: donorResults });
+    }
+  });
+});
+// --------------------------------------------------------------------------------------------
+// Route to render the donor page and fetch donor data
+app.get('/admin/adaccept', (req, res) => {
+  // Fetch donor data from the database
+  connection.query('SELECT * FROM acceptor', (error, acceptResults, fields) => {
+    if (error) {
+      console.log('Error fetching donor data from the database:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      // Pass donor data to the template
+      res.render('admin/admin-acceptor', { acceptors: acceptResults });
+    }
+  });
+});
 
-
+// -----------------------------------------------------------------------------------
 //Port displaying
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

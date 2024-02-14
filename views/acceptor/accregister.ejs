@@ -85,10 +85,17 @@
                     </div>
                   </div>
 
-           
                   <div class="d-flex justify-content-between">
                     <!-- Gender input -->
-                    
+                    <div class="form-outline m-2 text-start">
+                      <label class="form-label">Gender</label>
+                      <select class="form-select rounded-3" name="gender" required>
+                        <option value="" selected disabled></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
                     <!-- phone input -->
                     <div class="form-outline m-2 text-start">
                       <label class="form-label">Phone no</label>
@@ -114,11 +121,7 @@
                   <!-- Register buttons -->
                   <div class="text-center">
 
-                    <p>Already have  an<span class="text-danger">account ? </span></p>
-
-                    <p>Already have an <span class="text-danger">account ?</span></p>
-
-                    <p>Already have an <span class="text-danger">account?</span></p>
+                    <p>Already have an<span class="text-danger">account ? </span></p>
                     <a href="/accept/acclog" type="button"
                       class="btn btn-link border-danger rounded-pill px-4 shadow-lg btn-floating mx-1">
                       <i class="bi bi-person-lock text-danger"></i>

@@ -55,6 +55,19 @@
     </div>
   </div>
 
+
+  <!-- Add this script at the end of your HTML body -->
+<script>
+  // Get the URL parameters
+  const urlParams = new URLSearchParams(window.location.search);
+  const error = urlParams.get('error');
+
+  // If error is present and equals 1, show the alert
+  if (error === '1') {
+    alert('Invalid email or password. Please try again.');
+  }
+</script>
+
   <script src="../libs/jquery/dist/jquery.min.js"></script>
   <script src="../libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   

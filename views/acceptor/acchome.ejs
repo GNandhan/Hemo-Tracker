@@ -111,9 +111,12 @@
                   <%= donor.don_fname %> <%= donor.don_lname %>
                 </h5>
                 <p class="card-text">Blood Group: <%= donor.don_blood %></p>
-                <!-- Add more donor details here as needed -->
-                
-                <!-- Add more details as needed -->
+              </div>
+              <div class="card-footer">
+                <form action="/accept/sendRequest" method="post">
+                  <input type="hidden" name="donorId" id="donorId" value="<%= donor.id %>">
+                  <button type="submit" class="btn btn-danger rounded-4">Send Request</button>
+                </form>        
               </div>
             </div>
             <div class="collapse" id="collapseExample<%= donor.id %>">
@@ -126,7 +129,8 @@
                 <p class="card-text">Phno: <%= donor.don_phno %></p>
                 <p class="card-text">Location: <%= donor.don_location %></p>
                 <p class="card-text">State: <%= donor.don_state %></p>
-                <button class="btn btn-danger rounded-4">Send Request</button>
+                <!-- <button class="btn btn-danger rounded-4">Send Request</button> -->
+                <button class="btn btn-danger rounded-4 send-request-btn" data-donor-id="<%= donor.id %>">Send Request</button>
               </div>
             </div>
           </div>

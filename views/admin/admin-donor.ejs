@@ -15,54 +15,12 @@
       <div class="container-fluid">
         <div class="card">
           <div class="card-body">
-            <h1 class="fw-semibold mb-4">Product</h1>
-            <div class="card">
-              <div class="card-body">
-              <form method="POST" enctype="multipart/form-data">  
-                  <div class="row mb-3">
-                    <div class="col-lg-8 col-md-8 col-sm-8">
-                      <label for="exampleInputEmail1" class="form-label">Product Name</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="pro" value="">
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4">
-                      <label for="exampleInputEmail1" class="form-label">Category</label>
-                      <select id="disabledSelect" class="form-select" name="cat">
-                        <option>Category select</option>
-                         <option value="">option1</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-lg-6 col-md-4 col-sm-4">
-                      <label for="exampleInputEmail1" class="form-label">Product Price</label>
-                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="pri" value="">
-                    </div>
-                    <div class="col-lg-6 col-md-8 col-sm-8">
-                      <label for="exampleInputEmail1" class="form-label">Product Quantity</label>
-                      <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="qua" value="">
-                    </div>
-                  </div>
-                  <div class="row mb-3">
-                    <div class="col-lg-5 col-md-5 col-sm-5">
-                      <label for="exampleInputEmail1" class="form-label">Product Image</label>
-                      <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="img">
-                      <img src="../images/products/" alt="" width="100">
-                    </div>
-                    <div class="col-lg-7 col-md-7 col-sm-7">
-                      <label for="exampleInputEmail1" class="form-label">Product Description</label>
-                      <textarea class="form-control" id="productDescription" name="dis" rows="2" cols="50"></textarea>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary" name="submitp">Submit</button>
-                  <a href="admin-product.html" class="btn btn-danger">Reset</a>
-                </form>
-              </div>
-            </div>
+            <h1 class="fw-semibold mb-4">Donor</h1>
 
 <!-- table begin -->
             <div class="card w-100">
               <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Product List</h5>
+                <h5 class="card-title fw-semibold mb-4">Donor List</h5>
                 <div class="table-responsive">
                   <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
@@ -71,60 +29,89 @@
                           <h6 class="fw-semibold mb-0">Id</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Product name</h6>
+                          <h6 class="fw-semibold mb-0">Firstname</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Category</h6>
+                          <h6 class="fw-semibold mb-0">Lastname</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Quantity</h6>
+                          <h6 class="fw-semibold mb-0">Gender</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Price</h6>
+                          <h6 class="fw-semibold mb-0">Age</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Description</h6>
+                          <h6 class="fw-semibold mb-0">Dob</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Image</h6>
+                          <h6 class="fw-semibold mb-0">Mail</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Edit</h6>
+                          <h6 class="fw-semibold mb-0">Blood Group</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Delete</h6>
+                          <h6 class="fw-semibold mb-0">Phno</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Location</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">State</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Password</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">Pincode</h6>
                         </th>
                       </tr>
                     </thead>
 
                     <tbody>
+                      <% donors.forEach(function(donor) { %>
                       <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0">1</h6></td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">product 1</p>                         
+                          <h6 class="fw-semibold mb-0"><%= donor.don_id %></h6>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">category1</p>
+                          <p class="mb-0 fw-normal"><%= donor.don_fname %></p>                         
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">5</p>
+                          <p class="mb-0 fw-normal"><%= donor.don_lname %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4">$20</h6>
+                          <p class="mb-0 fw-normal"><%= donor.don_gender %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">best product ever</p>
+                          <p class="mb-0 fw-normal"><%= donor.don_age %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0 fs-4"><img src="../images/products/" alt="product image" width="50"></h6>
+                          <p class="mb-0 fw-normal"><%= donor.don_dob %></p>
                         </td>
                         <td class="border-bottom-0">
-                        <a href="admin-product.html"><span><i class="ti ti-edit btn btn-outline-success"></i></span></a>
+                          <p class="mb-0 fw-normal"><%= donor.don_mail %></p>
                         </td>
                         <td class="border-bottom-0">
-                        <a href="admin-product.html"><span><i class="ti ti-trash btn btn-outline-danger"></i></span></a>
+                          <p class="mb-0 fw-normal"><%= donor.don_blood %></p>
                         </td>
-                      </tr>                        
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= donor.don_phno %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= donor.don_location %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= donor.don_state %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= donor.don_password %></p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal"><%= donor.don_pin %></p>
+                        </td>
+                        
+                      </tr>   
+                      <% }); %>                  
                     </tbody>  
 
                   </table>

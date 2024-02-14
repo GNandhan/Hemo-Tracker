@@ -38,75 +38,43 @@
                           <h6 class="fw-semibold mb-0">gender</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Age</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Dob</h6>
-                        </th>
-                        <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Mail</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Blood</h6>
                         </th>
                         <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Ph no</h6>
                         </th>
                         <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Location</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">State</h6>
-                        </th>
-                        <th class="border-bottom-0">
                           <h6 class="fw-semibold mb-0">Password</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Pin</h6>
                         </th>
                       </tr>
                     </thead>
 
                     <tbody>
+                      <% acceptors.forEach(function(acceptor) { %>
                     <tr>
-                        <td class="border-bottom-0"><h6 class="fw-semibold mb-0"> 1</h6></td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Abin</p>                         
+                          <h6 class="fw-semibold mb-0"><%= acceptor.acc_id %></h6>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">male</p>
+                          <p class="mb-0 fw-normal"><%= acceptor.acc_fname %></p>                         
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">26-01-2000</p>
+                          <p class="mb-0 fw-normal"><%= acceptor.acc_lname %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">9966885577</p>
+                          <p class="mb-0 fw-normal"><%= acceptor.acc_gender %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">North Po</p>
+                          <p class="mb-0 fw-normal"><%= acceptor.acc_mail %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">kochi</p>
+                          <p class="mb-0 fw-normal"><%= acceptor.acc_phno %></p>
                         </td>
                         <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">near Metro station</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">Ernakulam</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">659865</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">abin22@gmail.com</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">abin22@</p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal">abin22@</p>
-                        </td>
-                      </tr>                    
+                          <p class="mb-0 fw-normal"><%= acceptor.acc_password %></p>
+                        </td> 
+                      </tr>      
+                      <% }); %>                  
                     </tbody>
 
                   </table>

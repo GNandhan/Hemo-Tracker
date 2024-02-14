@@ -67,7 +67,7 @@
     </div>
     <!-- first row closed -->
     <!-- second row -->
-    <div class="container">
+    <!-- <div class="container">
       <div class="row bg-danger shadow rounded-4 p-3">
         <div class="col-lg col-md col-sm col px-5 mx-5">
           <form action="" class="d-flex">            
@@ -87,40 +87,9 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- second row closed -->
-        <!-- Display acceptor list -->
-        <div class="container">
-          <h2 class="mt-5">Acceptor List</h2>
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <% acceptors.forEach((acceptor)=> { %>
-              <div class="col">
-                <div class="card rounded-4 red-shadow border border-end-0 border-danger" data-bs-toggle="collapse" href="#collapseExample<%= acceptor.id %>" role="button" aria-expanded="false" aria-controls="collapseExample<%= acceptor.id %>">
-                  <div class="card-body">
-                    <h5 class="card-title">
-                      <%= acceptor.acc_fname %> <%= acceptor.acc_lname %>
-                    </h5>
-                    <p class="card-text">Blood Group: <%= acceptor.acc_blood %></p>
-                    <!-- Add more acceptor details here as needed -->
-                    
-                    <!-- Add more details as needed -->
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample<%= acceptor.id %>">
-                  <div class="card card-body">
-                    <!-- Additional acceptor details or actions can be added here -->
-                    <p class="card-text">Gender: <%= acceptor.acc_gender %></p>
-                    <p class="card-text">Age: <%= acceptor.acc_age %></p>
-                    <p class="card-text">Date of Birth: <%= acceptor.acc_dob %></p>
-                    <p class="card-text">Email: <%= acceptor.acc_mail %></p>
-                  </div>
-                </div>
-              </div>
-              <% }) %>
-    
-          </div>
-        </div>
-        <!-- acceptor list closed -->
+
     <!-- About  -->
     <div class="container col-xxl-8 px-4 py-5">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
