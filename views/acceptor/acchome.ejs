@@ -48,7 +48,7 @@
           <li class="nav-item"><a href="/accept/acchom" class="nav-link text-danger border-bottom border-danger">Home</a></li>
           <li class="nav-item"><a href="/accept/accabt" class="nav-link text-dark">About</a></li>
           <li class="nav-item"><a href="/accept/accabt" class="nav-link text-dark">Contact</a></li>
-          <li class="nav-item"><a href="/accept/acclog" class="nav-link text-dark">Login </a></li>
+          <li class="nav-item"><a href="/accept/acclog" class="nav-link text-dark">Logout</a></li>
         </ul>
       </header>
     </div>
@@ -114,7 +114,7 @@
               </div>
               <div class="card-footer">
                 <form action="/accept/sendRequest" method="post">
-                  <input type="hidden" name="donorId" id="donorId" value="<%= donor.id %>">
+                  <input type="hidden" name="donorId" id="donorId" value="<%= donor.don_id %>">
                   <button type="submit" class="btn btn-danger rounded-4">Send Request</button>
                 </form>        
               </div>
@@ -122,6 +122,7 @@
             <div class="collapse" id="collapseExample<%= donor.id %>">
               <div class="card card-body">
                 <!-- Additional donor details or actions can be added here -->
+                <p class="card-text">Donor Id: <%= donor.don_id %></p>
                 <p class="card-text">Gender: <%= donor.don_gender %></p>
                 <p class="card-text">Age: <%= donor.don_age %></p>
                 <p class="card-text">Date of Birth: <%= donor.don_dob %></p>
@@ -130,7 +131,7 @@
                 <p class="card-text">Location: <%= donor.don_location %></p>
                 <p class="card-text">State: <%= donor.don_state %></p>
                 <!-- <button class="btn btn-danger rounded-4">Send Request</button> -->
-                <button class="btn btn-danger rounded-4 send-request-btn" data-donor-id="<%= donor.id %>">Send Request</button>
+                <!-- <button class="btn btn-danger rounded-4 send-request-btn" data-donor-id="<%= donor.id %>">Send Request</button> -->
               </div>
             </div>
           </div>
@@ -233,6 +234,18 @@
       }, 1000); // Replace 2000 with the desired delay in milliseconds
     });
   </script>
+  <!-- Javascript for displaying the alert message that request is successfully sent -->
+<script>
+  // Check if the requestSent query parameter exists in the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestSent = urlParams.get('requestSent');
+
+  // If requestSent is true, display an alert message
+  if (requestSent === 'true') {
+    alert('Request sent successfully!');
+  }
+</script>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

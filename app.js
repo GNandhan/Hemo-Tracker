@@ -119,7 +119,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
       console.log("User registered successfully!");
 
       // Send a success message to the registration page
-      res.render('acceptor/accregister', { successMessage: "Registration successful! You can now log in." });
+      res.redirect('acceptor/accregister', { successMessage: "Registration successful! You can now log in." });
   });
 });
 
@@ -221,7 +221,7 @@ app.post('/accept/sendRequest', encoder, function (req, res) {
 
       // Request sent successfully!
       console.log("Request sent successfully!");
-      res.redirect('/accept/acchom'); // Redirect back to the donor list page
+      res.redirect('/accept/acchom?requestSent=true'); // Redirect back to the donor list page
     });
 });
 

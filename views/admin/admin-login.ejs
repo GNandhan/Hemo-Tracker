@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <!--  Body Wrapper -->
+  <!-- Body Wrapper -->
   <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     <div
@@ -36,16 +36,12 @@
                     <div class="form-check">
                       <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked required>
                       <label class="form-check-label text-dark" for="flexCheckChecked">
-                        Remeber this Device
+                        Remember this Device
                       </label>
                     </div>
                     <a class="text-primary fw-bold" href="">Forgot Password?</a>
                   </div>
                   <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">Sign In</button>
-                  <!-- <div class="d-flex align-items-center justify-content-center">
-                    <p class="fs-4 mb-0 fw-bold">Didn't have an account?</p>
-                    <a class="text-primary fw-bold ms-2" href="/admin/adreg">Create an account</a>
-                  </div> -->
                 </form>
               </div>
             </div>
@@ -55,21 +51,24 @@
     </div>
   </div>
 
+  <script>
+    // Get the URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
 
-  <!-- Add this script at the end of your HTML body -->
-<script>
-  // Get the URL parameters
-  const urlParams = new URLSearchParams(window.location.search);
-  const error = urlParams.get('error');
+    // If error is present and equals 1, show the alert
+    if (error === '1') {
+      alert('Invalid email or password. Please try again.');
+    }
 
-  // If error is present and equals 1, show the alert
-  if (error === '1') {
-    alert('Invalid email or password. Please try again.');
-  }
-</script>
+    // Check if the URL contains 'success' parameter indicating successful login
+    const success = urlParams.get('success');
+    if (success === 'true') {
+      alert('Login successful!'); // Display alert for successful login
+    }
+  </script>
 
   <script src="../libs/jquery/dist/jquery.min.js"></script>
   <script src="../libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  
 </body>
 </html>
