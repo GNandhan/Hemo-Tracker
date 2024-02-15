@@ -106,12 +106,16 @@
         <% donors.forEach((donor)=> { %>
           <div class="col">
             <div class="card rounded-4 red-shadow border border-end-0 border-danger" data-bs-toggle="collapse" href="#collapseExample<%= donor.id %>" role="button" aria-expanded="false" aria-controls="collapseExample<%= donor.id %>">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= donor.don_fname %> <%= donor.don_lname %>
-                </h5>
-                <p class="card-text">Blood Group: <%= donor.don_blood %></p>
+              <div class="card-body d-flex align-items-center justify-content-between">
+                <div>
+                  <h5 class="card-title">
+                    <%= donor.don_fname %> <%= donor.don_lname %>
+                  </h5>
+                  <p class="card-text">Blood Group: <%= donor.don_blood %></p>
+                </div>
+                <img src="/user/images/user.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
               </div>
+              
               <div class="card-footer">
                 <form action="/accept/sendRequest" method="post">
                   <input type="hidden" name="donorId" id="donorId" value="<%= donor.don_id %>">
