@@ -218,8 +218,10 @@ app.get('/accept/acchom', (req, res) => {
           console.log('Error fetching locations from the database:', error);
           res.status(500).send('Internal Server Error');
         } else {
+          // Fetch acceptor details from session
+          const acceptorDetails = req.session.user;
           // Pass donor data and locations to the template
-          res.render('acceptor/acchome', { donors: donorResults, locations: locationResults });
+          res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails });
         }
       });
     }
