@@ -54,40 +54,23 @@ app.get('/home', (req, res) => {
     // If logged in, retrieve user's information from session
     const user = req.session.user;
 
-    // Fetch request data for the logged-in donor along with acceptor details
-    const query = `
-      SELECT 
-        request.req_id, 
-        request.donor_id, 
-        request.acceptor_id, 
-        request.status, 
-        acceptor.acc_fname,
-        acceptor.acc_lname,
-        acceptor.acc_gender,
-        acceptor.acc_age,
-        acceptor.acc_dob,
-        acceptor.acc_mail,
-        acceptor.acc_phno,
-        acceptor.acc_location,
-        acceptor.acc_state
-      FROM 
-        request
-      INNER JOIN 
-        acceptor 
-      ON 
-        request.acceptor_id = acceptor.acc_id
-      WHERE 
-        request.donor_id = ?
-    `;
-    connection.query(query, [user.don_id], (error, results, fields) => {
-      if (error) {
-        console.log('Error fetching request data from the database:', error);
-        res.status(500).send('Internal Server Error');
-      } else {
-        // Render the home page template and pass the user's information and request data to it
-        res.render('donor/home', { user, requests: results });
+    // Fetch request data for the logged-in donor including acceptor details
+    connection.query(
+      'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, a.acc_fname, a.acc_lname, a.acc_gender, a.acc_mail, a.acc_phno ' +
+      'FROM request r ' +
+      'JOIN acceptor a ON r.acceptor_id = a.acc_id ' +
+      'WHERE r.donor_id = ?',
+      [user.don_id],
+      (error, requestResults, fields) => {
+        if (error) {
+          console.log('Error fetching request data from the database:', error);
+          res.status(500).send('Internal Server Error');
+        } else {
+          // Render the home page template and pass the user's information and request data to it
+          res.render('donor/home', { user, requests: requestResults });
+        }
       }
-    });
+    );
   } else {
     // If user is not logged in, redirect to login page
     res.redirect('/dlog');
@@ -171,7 +154,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
       console.log("User registered successfully!");
 
       // Send a success message to the registration page
-      res.redirect('acceptor/accregister', { successMessage: "Registration successful! You can now log in." });
+      res.redirect('/acceptor/accregister');
   });
 });
 // -------------------------------------------------------------------------------------------------------
