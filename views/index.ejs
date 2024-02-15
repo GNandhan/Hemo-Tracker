@@ -158,10 +158,49 @@
     <!-- --------- -->
     <div class="container my-5">
       <div class="row mt-3 align-items-center">
-        <div class="col-lg rounded-4 mx-2" style="background-color: rgba(212, 4, 4, 0.815);">
-          <img src="/user/images/img4.png" class="rounded-4" alt=" image od donation" width="100%">
+        <div class="col-lg col-md col-sm col">
+          <!-- <img src="/user/images/img4.png" class="rounded-4" alt=" image od donation" width="100%"> -->
+          <!-- Mini-Carousel on the left side -->
+          <div class="carousel-container">
+            <div id="carouselExampleAutoplaying" class="carousel slide rounded-4" data-bs-ride="carousel">
+              <div class="carousel-inner rounded-4">
+                <div class="carousel-item active" data-bs-interval="2000">
+                  <img src="\user\images\news1.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block text-start"> <!-- Updated class to text-start -->
+                    <h1>Donation Camps</h1>
+                    <h3>We created blood donation campaigns for poor people</h3>
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="\user\images\news2.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block">
+                    <!-- <h5>Second slide label</h5>
+                            <p>Some representative placeholder content for the second slide.</p> -->
+                  </div>
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                  <img src="\user\images\news3.png" class="d-block w-100" alt="...">
+                  <div class="carousel-caption d-none d-md-block text-start"> <!-- Updated class to text-start -->
+                    <h1>Public Campaigns</h1>
+                    <h3>To give awareness about the donation of blood and saving life</h3>
+                  </div>
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <!-- Mini-Carousel on the left side -->
         </div>
-        <div class="col-lg-7 text-end rounded-4 p-3">
+        <div class="col-lg-5 col-md col-sm-12 col-12 text-end rounded-4 p-3">
           <p class="text-end lead  border-end border-danger px-3"><span class="text-danger fs-2">Blood donation</span>
             plays a crucial role in healthcare systems worldwide, saving millions of lives annually.
             However, efficient management of blood donation processes remains a challenge. Hemo-Tracker emerges as a
@@ -175,13 +214,14 @@
     <!-- ----section----- -->
     <div class="container my-5">
       <div class="row align-items-center">
-        <div class="col-lg-7">
-          <p class="text-start lead border-start border-danger px-3">Hemo-Tracker revolutionizes blood donation management by simplifying registration and requests.
+        <div class="col-lg-7 col-md col-sm-12 col-12">
+          <p class="text-start lead border-start border-danger px-3">Hemo-Tracker revolutionizes blood donation
+            management by simplifying registration and requests.
             With user-friendly interfaces and robust security, it improves accessibility, efficiency, and transparency.
             Its impact extends beyond individuals to transform healthcare systems, showcasing technology's power to
             enhance patient outcomes and delivery.</p>
         </div>
-        <div class="col-lg">
+        <div class="col-lg col-md col-sm col">
           <img src="/user/images/img5.png" class="rounded-4" alt="" width="100%">
         </div>
       </div>
@@ -191,9 +231,8 @@
     <div class="container px-4 py-2" id="login-section">
       <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 text-center"><span class="text-danger">Login As:</span>
       </h1>
-      <div
-        class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 d-flex align-items-center justify-content-center">
-        <div class="col">
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 d-flex align-items-center justify-content-center">
+        <div class="col-lg col-md col-sm col">
           <!-- Card 1 -->
           <div class="card card-cover h-100 text-bg-dark rounded-4 shadow-lg"
             style="background-image: url('user/images/donor.jpg'); background-size:cover;">
@@ -211,7 +250,7 @@
           </div>
         </div>
         <!-- Card 2 -->
-        <div class="col">
+        <div class="col-lg col-md col-sm col">
           <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
             style="background-image: url('user/images/acceptor.jpg');background-size:cover;">
             <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
