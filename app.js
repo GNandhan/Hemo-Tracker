@@ -154,7 +154,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
       console.log("User registered successfully!");
 
       // Send a success message to the registration page
-      res.redirect('/acceptor/accregister');
+      res.redirect('/accept/acclog');
   });
 });
 // -------------------------------------------------------------------------------------------------------
