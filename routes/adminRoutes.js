@@ -6,9 +6,9 @@ router.get('/adlog', (req, res) => {
   res.render('admin/admin-login');
   });
   
-router.get('/addash', (req, res) => {
-  res.render('admin/admin-dashboard');
-});
+// router.get('/addash', (req, res) => {
+//   res.render('admin/admin-dashboard');
+// });
 
 // router.get('/addonor', (req, res) => {
 //   res.render('admin/admin-donor');

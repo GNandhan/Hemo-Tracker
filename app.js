@@ -46,6 +46,57 @@ app.use('/admin', adminRoutes);
 app.use('/', donorRoutes);
 
 
+// -------------------------------------------------------------------------------------------------------
+// Route handler for the home page
+app.get('/home', (req, res) => {
+  // Check if user is logged in
+  if (req.session.user) {
+    // If logged in, retrieve user's information from session
+    const user = req.session.user;
+
+    // Fetch request data for the logged-in donor along with acceptor details
+    const query = `
+      SELECT 
+        request.req_id, 
+        request.donor_id, 
+        request.acceptor_id, 
+        request.status, 
+        acceptor.acc_fname,
+        acceptor.acc_lname,
+        acceptor.acc_gender,
+        acceptor.acc_age,
+        acceptor.acc_dob,
+        acceptor.acc_mail,
+        acceptor.acc_phno,
+        acceptor.acc_location,
+        acceptor.acc_state
+      FROM 
+        request
+      INNER JOIN 
+        acceptor 
+      ON 
+        request.acceptor_id = acceptor.acc_id
+      WHERE 
+        request.donor_id = ?
+    `;
+    connection.query(query, [user.don_id], (error, results, fields) => {
+      if (error) {
+        console.log('Error fetching request data from the database:', error);
+        res.status(500).send('Internal Server Error');
+      } else {
+        // Render the home page template and pass the user's information and request data to it
+        res.render('donor/home', { user, requests: results });
+      }
+    });
+  } else {
+    // If user is not logged in, redirect to login page
+    res.redirect('/dlog');
+  }
+});
+
+
+// -------------------------------------------------------------------------------------------------------
+
 // Route to handle form submission and insert data into database
 app.post('/dreg', encoder, function (req, res) {
   var rfirstname = req.body.firstname;
@@ -97,7 +148,8 @@ app.post('/dlog', encoder, function (req, res) {
       }
   });
   });
-// ---------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+
 // Route to handle form submission and insert data into database
 app.post('/accept/accreg', encoder, function (req, res) {
   var lfirstname = req.body.firstname;
@@ -122,7 +174,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
       res.redirect('acceptor/accregister', { successMessage: "Registration successful! You can now log in." });
   });
 });
-
+// -------------------------------------------------------------------------------------------------------
 // Route to handle login form submission
 app.post('/accept/acclog', encoder, function (req, res) {
   var acemail = req.body.accmail;
@@ -148,7 +200,8 @@ app.post('/accept/acclog', encoder, function (req, res) {
       }
   });
 });
-// -----------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+
 // Route to render the page and fetch donor data and locations
 app.get('/accept/acchom', (req, res) => {
   // Fetch location and blood group from query parameters
@@ -189,7 +242,8 @@ app.get('/accept/acchom', (req, res) => {
     }
   });
 });
-// -------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
+
 // Route to handle sending request
 app.post('/accept/sendRequest', encoder, function (req, res) {
   // Retrieve donor ID from the form
@@ -225,8 +279,7 @@ app.post('/accept/sendRequest', encoder, function (req, res) {
     });
 });
 
-
-//--------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 // Route to handle login form submission
 app.post('/admin/adlog', encoder, function (req, res) {
   var ademail = req.body.ademail;
@@ -251,8 +304,7 @@ app.post('/admin/adlog', encoder, function (req, res) {
       }
   });
 });
-
-// -----------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 // Route to render the donor page and fetch donor data
 app.get('/admin/addonor', (req, res) => {
   // Fetch donor data from the database
@@ -266,7 +318,7 @@ app.get('/admin/addonor', (req, res) => {
     }
   });
 });
-// --------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------------
 // Route to render the donor page and fetch donor data
 app.get('/admin/adaccept', (req, res) => {
   // Fetch donor data from the database
@@ -280,8 +332,37 @@ app.get('/admin/adaccept', (req, res) => {
     }
   });
 });
+// -------------------------------------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------------
+// Route to render the admin dashboard and fetch total counts of acceptors and donors
+app.get('/admin/addash', (req, res) => {
+  // Fetch total count of acceptors
+  connection.query('SELECT COUNT(*) AS acceptorCount FROM acceptor', (error, acceptorCountResults, fields) => {
+    if (error) {
+      console.log('Error fetching acceptor count from the database:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      const acceptorCount = acceptorCountResults[0].acceptorCount;
+
+      // Fetch total count of donors
+      connection.query('SELECT COUNT(*) AS donorCount FROM donor', (error, donorCountResults, fields) => {
+        if (error) {
+          console.log('Error fetching donor count from the database:', error);
+          res.status(500).send('Internal Server Error');
+        } else {
+          const donorCount = donorCountResults[0].donorCount;
+          // total sum calculation
+          const totalSum = acceptorCount + donorCount;
+
+          // Render the admin dashboard view with acceptor and donor counts
+          res.render('admin/admin-dashboard', { acceptorCount, donorCount, totalSum });
+        }
+      });
+    }
+  });
+});
+// -------------------------------------------------------------------------------------------------------
+
 //Port displaying
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

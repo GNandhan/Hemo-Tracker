@@ -6,9 +6,9 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
-router.get('/home', (req, res) => {
-  res.render('donor/home');
-  });
+// router.get('/home', (req, res) => {
+//   res.render('donor/home');
+//   });
 
 router.get('/about', (req, res) => {
   res.render('donor/about');

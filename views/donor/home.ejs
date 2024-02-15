@@ -55,9 +55,11 @@
     <!-- first row -->
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 col-md col-sm-12 col-12 py-5">
-          <h1 class="display-3 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving life
-          </h1>
+        <div class=" col-lg-6 col-md col-sm-12 col-12 py-5">
+          <!-- Displaying the logged-in user's name -->
+          <div class="h2"><%= user.don_fname %>  <%= user.don_lname %></div>
+          <div class="display-4 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving life
+          </div>
           <a class="btn but but-comtent btn-danger px-5 rounded-pill">DONATE NOW</a>
         </div>
         <div class="col-lg-6 col-md col-sm-12 col-12">
@@ -66,28 +68,82 @@
       </div>
     </div>
     <!-- first row closed -->
+    <!-- Display received requests -->
+<!-- Display received requests -->
+<% if (requests && requests.length > 0) { %>
+  <div class="mt-4">
+    <h2 class="fw-semibold">Received Requests</h2>
+    <ul>
+      <% requests.forEach(request => { %>
+        <li>
+          <!-- Display request details here -->
+          <p>
+            Request ID: <%= request.req_id %><br>
+            Acceptor Name: <%= request.acc_fname %> <%= request.acc_lname %><br>
+            Acceptor Gender: <%= request.acc_gender %><br>
+            Acceptor Age: <%= request.acc_age %><br>
+            Acceptor Email: <%= request.acc_mail %><br>
+            Acceptor Phone: <%= request.acc_phno %><br>
+            Acceptor Location: <%= request.acc_location %><br>
+            Acceptor State: <%= request.acc_state %><br>
+            Status: <%= request.status %>
+          </p>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+<% } else { %>
+  <p>No requests found.</p>
+<% } %>
+
     <!-- second row -->
-    <!-- <div class="container">
-      <div class="row bg-danger shadow rounded-4 p-3">
-        <div class="col-lg col-md col-sm col px-5 mx-5">
-          <form action="" class="d-flex">            
-            <input class="form-control px-5" type="text" placeholder="Search Location" style="width: 33.33%;">
-            <select class="form-select px-5 mx-2" name="" id="" style="width: 33.33%;">
-              <option selected>Blood Group</option>
-              <option value="">A+</option>
-              <option value="">A-</option>
-              <option value="">B+</option>
-              <option value="">B-</option>
-              <option value="">AB+</option>
-              <option value="">AB-</option>
-              <option value="">O+</option>
-              <option value="">O-</option>
-            </select>
-            <a href="" class="btn btn-danger border-light rounded-4 px-5" style="width: 33.33%;">Find Acceptor</a>
-          </form>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg">
+          <div class="card rounded-4 shadow-lg p-3" style="background-color: rgba(255, 255, 255, 0.192);">
+            <h1 class="fw-semibold">Request</h1>
+              <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+                <div class="col d-flex align-items-start">
+                  <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
+                  </div>
+                  <div>
+                    <h3 class="fs-2 text-body-emphasis">Acceptor Name</h3>
+                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    <a href="#" class="btn btn-danger">
+                      Approve
+                    </a>
+                  </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                  <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
+                  </div>
+                  <div>
+                    <h3 class="fs-2 text-body-emphasis">Acceptor Name</h3>
+                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    <a href="#" class="btn btn-danger">
+                      Approve
+                    </a>
+                  </div>
+                </div>
+                <div class="col d-flex align-items-start">
+                  <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                    <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
+                  </div>
+                  <div>
+                    <h3 class="fs-2 text-body-emphasis">Acceptor Name</h3>
+                    <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                    <a href="#" class="btn btn-danger">
+                      Approve
+                    </a>
+                  </div>
+                </div>
+              </div>
+          </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- second row closed -->
 
     <!-- About  -->

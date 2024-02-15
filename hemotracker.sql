@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 12, 2024 at 05:21 AM
+-- Generation Time: Feb 15, 2024 at 06:22 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.25
 
@@ -32,26 +32,34 @@ CREATE TABLE `acceptor` (
   `acc_fname` varchar(100) NOT NULL,
   `acc_lname` varchar(100) NOT NULL,
   `acc_gender` varchar(100) NOT NULL,
-  `acc_age` varchar(100) NOT NULL,
-  `acc_dob` date NOT NULL,
   `acc_mail` varchar(100) NOT NULL,
-  `acc_blood` varchar(50) NOT NULL,
-  `acc_phno` int(50) NOT NULL,
-  `acc_location` varchar(100) NOT NULL,
-  `acc_state` varchar(100) NOT NULL,
-  `acc_password` varchar(100) NOT NULL,
-  `acc_pin` int(50) NOT NULL
+  `acc_phno` varchar(50) NOT NULL,
+  `acc_password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `acceptor`
 --
 
-INSERT INTO `acceptor` (`acc_id`, `acc_fname`, `acc_lname`, `acc_gender`, `acc_age`, `acc_dob`, `acc_mail`, `acc_blood`, `acc_phno`, `acc_location`, `acc_state`, `acc_password`, `acc_pin`) VALUES
-(1, 'Anand', 'biju', 'male', '22', '2024-02-15', 'anand123@gmail.com', 'B-', 2147483647, 'kozhikode', 'kerala', 'anand123@', 0),
-(2, 'Athulya', 'jayaprakash', 'Female', '19', '2024-02-07', 'athulya123@gmail.com', 'B+', 657845, 'Alappuzha', 'kerala', 'athulya123@', 0),
-(3, 'Sufiyan', 'km', 'male', '20', '2024-02-27', 'gowrinandhan95@gmail.com', 'O+', 2147483647, 'Thodupuzha', 'Kerala', 'jishna123@', 0),
-(4, 'Anurudh', 'ravichandran', 'Male', '32', '2024-02-29', 'anirudh123@gmail.com', 'O+', 2147483647, 'Kozhikode', 'Alabama', 'anirudh123@', 659854);
+INSERT INTO `acceptor` (`acc_id`, `acc_fname`, `acc_lname`, `acc_gender`, `acc_mail`, `acc_phno`, `acc_password`) VALUES
+(1, 'Anand', 'biju', 'male', 'anand123@gmail.com', '2147483647', 'anand123@'),
+(2, 'Athulya', 'jayaprakash', 'Female', 'athulya123@gmail.com', '657845', 'athulya123@'),
+(3, 'Sufiyan', 'km', 'male', 'gowrinandhan95@gmail.com', '2147483647', 'jishna123@'),
+(4, 'Anurudh', 'ravichandran', 'Male', 'anirudh123@gmail.com', '2147483647', 'anirudh123@'),
+(5, 'abhinand', 'm pillai', 'Male', 'abhinand123@gmail.com', '2147483647', 'abhinand123@'),
+(6, 'Anand', 'gowrinandhan', 'Male', 'tyuyuj@gmail.com', '2147483647', 'sufiyan123@'),
+(7, 'anandhu', 'kk', 'Female', 'anandhu123@gmail.com', '2147483647', 'anandhu123@'),
+(8, 'Amalraj', 'rajan', 'Male', 'amalraj123@gmail.com', '2147483647', 'amalraj123@'),
+(9, 'aravind', 'jayan', 'Male', 'aravindj123@gmail.com', '2147483647', 'aravindj123@'),
+(10, 'mahesh', 'babu', 'Male', 'mahesh123@gmail.com', '2147483647', 'mahesh123@'),
+(11, 'mathew', 'thomas', 'Male', 'mathew123@gmail.com', '8596478587', 'mathew123@'),
+(12, 'sujatha', 'rajan', 'Female', 'sujatha123@gmail.com', '6598875498', 'sujatha123@'),
+(13, 'abhraham', 'simon', 'Male', 'abhraham123@gmail.com', '1245879865', 'abhraham123@'),
+(14, 'ram', 'divakar', 'Male', 'ram123@gmail.com', '9856987452', 'ram123@'),
+(15, 'abhiram', 'jay', 'Male', 'abhiram123@gmail.com', '9865875452', 'abhiram123@'),
+(16, 'dev', 'nandhan', 'Male', 'dev123@gmail.com', '8475848574', 'dev123@'),
+(17, 'thejus', 'krishna', 'Male', 'thejus123@gmail.com', '3265988754', 'thejus123@'),
+(18, 'naushad', 'vava', 'Male', 'naushad123@gmail.com', '2585967845', 'naushad123@');
 
 -- --------------------------------------------------------
 
@@ -108,11 +116,12 @@ INSERT INTO `donor` (`don_id`, `don_fname`, `don_lname`, `don_gender`, `don_age`
 (6, 'Albert', 'joshy', 'Male', '26', '2024-02-06', 'albertjosh123@gmail.com', 'B+', '9584875498', 'kochi', 'Alabama', 'albertjosh123@', 652845),
 (7, 'Mohan', 'Das', 'Male', '12', '2024-02-29', 'mohana12@mail.com', 'O+', '9865875492', 'Kayamkulam', 'Alabama', 'mohana12@', 657485),
 (8, 'arathy', 'anilkumar', 'Female', '20', '2003-07-02', 'arathy123@gmail.com', 'A+', '123456789', 'pala', 'Alabama', 'arathy678', 686579),
-(10, 'devu', 'kutty', 'Female', '18', '2008-05-05', 'devu23@gmail.com', 'O+', '9867564789', 'kottayam', 'Alaska', 'devu123', 678945),
-(11, 'malavika', 'a', 'Female', '20', '2003-06-08', 'malu8@gmail.com', 'O+', '8978764523', 'petta', 'Alabama', 'malu89', 678945),
-(12, 'manu', 'n', 'Male', '25', '1999-01-01', 'manu@gmail.com', 'AB-', '89345678', 'trivandrum', 'Alabama', 'manu890', 678954),
-(13, 'surya', 'mol', 'Female', '18', '2006-01-01', 'surya12', 'O-', '9876543212', 'petta', 'Alabama', 'surya', 686579),
-(14, 'abhinav', 'Krishna', 'Male', '20', '2024-02-01', 'abhin@gmail.com', 'A+', '9685748556', 'Thodupuzha', 'Alabama', 'abhinav123@', 685586);
+(9, 'devu', 'kutty', 'Female', '18', '2008-05-05', 'devu23@gmail.com', 'O+', '9867564789', 'kottayam', 'Alaska', 'devu123', 678945),
+(10, 'malavika', 'a', 'Female', '20', '2003-06-08', 'malu8@gmail.com', 'O+', '8978764523', 'petta', 'Alabama', 'malu89', 678945),
+(11, 'manu', 'n', 'Male', '25', '1999-01-01', 'manu@gmail.com', 'AB-', '89345678', 'trivandrum', 'Alabama', 'manu890', 678954),
+(12, 'surya', 'mol', 'Female', '18', '2006-01-01', 'surya12', 'O-', '9876543212', 'petta', 'Alabama', 'surya', 686579),
+(13, 'abhinav', 'Krishna', 'Male', '20', '2024-02-01', 'abhin@gmail.com', 'A+', '9685748556', 'Thodupuzha', 'Alabama', 'abhinav123@', 685586),
+(14, 'avinash', 'narayan', 'Male', '30', '2024-02-20', 'avinash123@gmail.com', 'A+', '9865329865', 'Thrissur', 'Alabama', 'avinash123@', 986578);
 
 -- --------------------------------------------------------
 
@@ -122,9 +131,23 @@ INSERT INTO `donor` (`don_id`, `don_fname`, `don_lname`, `don_gender`, `don_age`
 
 CREATE TABLE `request` (
   `req_id` int(11) NOT NULL,
-  `req_donor` int(11) NOT NULL,
-  `req_Acceptor` int(11) NOT NULL
+  `donor_id` int(11) NOT NULL,
+  `acceptor_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`req_id`, `donor_id`, `acceptor_id`, `status`) VALUES
+(1, 1, 1, 'pending'),
+(2, 1, 1, 'pending'),
+(3, 0, 1, 'pending'),
+(4, 0, 1, 'pending'),
+(5, 1, 1, 'pending'),
+(6, 10, 8, 'pending'),
+(7, 8, 8, 'pending');
 
 --
 -- Indexes for dumped tables
@@ -162,7 +185,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `acceptor`
 --
 ALTER TABLE `acceptor`
-  MODIFY `acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -174,13 +197,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `don_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `don_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
