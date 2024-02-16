@@ -55,44 +55,56 @@
     </div>
     <!-- navbar closed -->
     <!-- sidebar -->
-<div class="offcanvas offcanvas-end rounded-4 my-5 mx-3" tabindex="-1" id="profileOffcanvas"
-aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;background-color: rgb(255, 255, 255);">
-<div class="offcanvas-header py-0">
-  <h4 class="offcanvas-title text-light" id="profileOffcanvasLabel">.</h4>
-  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-</div>
-<div class="offcanvas-body text-start px-4">
-  <!-- Acceptor profile -->
-  <div class="row align-items-center mb-4">
-    <div class="col-auto">
-      <img src="/user/images/user.png" alt="" width="90" class="rounded-4">
-    </div>
-    <div class="col border-start">
-      <div class="fs-5"><%= acceptor.acc_fname %> <%= acceptor.acc_lname %></div>
-      <div>Gender: <span class="fw-bold"><%= acceptor.acc_gender %></span></div>
-      <div>Mail Id: <span class="fw-bold"><%= acceptor.acc_mail %></span></div>
-      <div>Phone: <span class="fw-bold"><%= acceptor.acc_phno %></span></div>
-    </div>
-  </div>
-  <!-- Acceptor profile closed-->
-
-  <!-- Request sent -->
-  <div class="fs-5">Request Sent</div>
-  <% requests.forEach((request) => { %>
-    <div class="card shadow rounded-4 mb-3">
-      <div class="card-body d-flex align-items-center justify-content-between">
-        <div>
-          <div class="card-text">Donor name: <%= request.don_fname %> <%= request.don_lname %></div>
-          <div class="card-text">Blood Group: <%= request.don_blood %></div>
+    <div class="offcanvas offcanvas-end rounded-4 my-5 mx-3" tabindex="-1" id="profileOffcanvas"
+      aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;background-color: rgb(255, 255, 255);">
+      <div class="offcanvas-header py-0">
+        <h4 class="offcanvas-title text-light" id="profileOffcanvasLabel">.</h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body text-start px-4">
+        <!-- Acceptor profile -->
+        <div class="row align-items-center mb-4 pb-3 border-bottom border-danger">
+          <div class="col-auto">
+            <img src="/user/images/user.png" alt="" width="90" class="rounded-4">
+          </div>
+          <div class="col border-start">
+            <div class="fs-5">
+              <%= acceptor.acc_fname %>
+                <%= acceptor.acc_lname %>
+            </div>
+            <div>Gender: <span class="fw-bold">
+                <%= acceptor.acc_gender %>
+              </span></div>
+            <div>Mail Id: <span class="fw-bold">
+                <%= acceptor.acc_mail %>
+              </span></div>
+            <div>Phone: <span class="fw-bold">
+                <%= acceptor.acc_phno %>
+              </span></div>
+          </div>
         </div>
-        <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
+        <!-- Acceptor profile closed-->
+
+        <!-- Request sent -->
+        <div class="fs-5">Request Sent</div>
+        <% requests.forEach((request)=> { %>
+          <div class="card shadow rounded-4 mb-3">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <div class="card-text">Donor name: <%= request.don_fname %>
+                    <%= request.don_lname %>
+                </div>
+                <div class="card-text">Blood Group: <%= request.don_blood %>
+                </div>
+              </div>
+              <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
+            </div>
+          </div>
+          <% }); %>
+            <!-- Request sent closed -->
       </div>
     </div>
-  <% }); %>
-  <!-- Request sent closed -->
-</div>      
-</div>
-<!-- sidebar closed -->
+    <!-- sidebar closed -->
 
 
     <!-- first row -->
@@ -110,10 +122,10 @@ aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;backgr
     <!-- first row closed -->
     <!-- second row -->
     <div class="container">
-      <div class="row bg-danger shadow rounded-4 p-3">
-        <div class="col-lg col-md col-sm col px-5 mx-5">
-          <form action="" method="get" class="d-flex">
-            <select class="form-select px-5" name="location" id="location" style="width: 33.33%;">
+      <form action="" method="get" class="d-flex">
+        <div class="row bg-danger shadow rounded-4 p-3">
+          <div class="col-lg-4 col-md col-sm-6 col-6 p-2">
+            <select class="form-select px-5" name="location" id="location">
               <option selected disabled>Search Location</option>
               <% locations.forEach((location)=> { %>
                 <option value="<%= location.don_location %>">
@@ -121,7 +133,9 @@ aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;backgr
                 </option>
                 <% }) %>
             </select>
-            <select class="form-select px-5 mx-2" name="bloodGroup" id="bloodGroup" style="width: 33.33%;">
+          </div>
+          <div class="col-lg-4 col-md col-sm-6 col-6 p-2">
+            <select class="form-select px-5 mx-2" name="bloodGroup" id="bloodGroup">
               <option selected>Blood Group</option>
               <option value="A+">A+</option>
               <option value="A-">A-</option>
@@ -132,11 +146,13 @@ aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;backgr
               <option value="O+">O+</option>
               <option value="O-">O-</option>
             </select>
-            <button type="submit" class="btn btn-danger border-light rounded-4 px-5" style="width: 33.33%;">Find
+          </div>
+          <div class="col-lg-4 col-md col-sm-12 col-12 p-2">
+            <button type="submit" class="btn btn-danger border-light rounded-4 w-100">Find
               Donor</button>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
     <!-- second row closed -->
     <!-- Donor List -->

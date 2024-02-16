@@ -123,14 +123,22 @@ app.post('/dlog', encoder, function (req, res) {
            // Save user data in session upon successful login
           req.session.user = results[0];
           console.log("User logged in successfully!");
-          res.redirect('/home');
+          // Inject script to show Bootstrap alert message upon successful login
+          const script = `
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <strong>Login successful!</strong> Welcome back, ${results[0].don_fname}!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `;
+          res.send(script + '<script>window.location.href = "/home";</script>'); // Redirect to home page after showing alert
       } else {
           // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
           console.log("Invalid email or password");
           res.redirect('/dlog'); 
       }
   });
-  });
+});
+
 // -------------------------------------------------------------------------------------------------------
 
 // Route to handle form submission and insert data into database
