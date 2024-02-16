@@ -192,7 +192,7 @@ app.post('/accept/acclog', encoder, function (req, res) {
   });
 });
 // -------------------------------------------------------------------------------------------------------
-// Route to render the page and fetch donor data based on search parameters
+// Route to render the page and fetch filtered donor data and locations
 app.get('/accept/acchom', (req, res) => {
   // Fetch location and blood group from query parameters
   const location = req.query.location;
@@ -250,6 +250,7 @@ app.get('/accept/acchom', (req, res) => {
     }
   });
 });
+
 
 
 // -------------------------------------------------------------------------------------------------------
