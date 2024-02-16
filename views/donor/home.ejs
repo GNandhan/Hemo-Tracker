@@ -67,39 +67,40 @@
       </div>
     </div>
     <!-- first row closed -->    
-    <!-- second row -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg">
-          <div class="card rounded-4 p-3" style="background-color: rgba(255, 255, 255, 0.13);">
-            <h1 class="fw-semibold">Request</h1>
-            <% if (requests && requests.length > 0) { %>
-              <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 border-left">
-                <% requests.forEach(request => { %>
-                <div class="col d-flex align-items-start pb-5 border-bottom">
-                  <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                    <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
-                  </div>
-                  <div>
-                    <h3 class="fs-2 text-body-emphasis"><%= request.acc_fname %> <%= request.acc_lname %></h3>
-                    <p>Gender:  <%= request.acc_gender %></p>
-                    <p>Mail Id:  <%= request.acc_mail %></p>
-                    <p>Phone:  <%= request.acc_phno %></p>
-                    <p>Status:  <%= request.status %></p>
-                    <a href="#" class="btn btn-danger rounded-4">
-                      Approve
-                    </a>
-                  </div>
-                </div>
-                <% }); %>
+<!-- second row -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg">
+      <div class="card rounded-4 p-3" style="background-color: rgba(255, 255, 255, 0.13);">
+        <h1 class="fw-semibold">Request</h1>
+        <% if (requests && requests.length > 0) { %>
+          <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 border-left">
+            <% requests.forEach(request => { %>
+            <div class="col d-flex align-items-start pb-5 border-bottom">
+              <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
               </div>
-              <% } %>
+              <div>
+                <h3 class="fs-2 text-body-emphasis"><%= request.acc_fname %> <%= request.acc_lname %></h3>
+                <p>Gender:  <%= request.acc_gender %></p>
+                <p>Mail Id:  <%= request.acc_mail %></p>
+                <p>Phone:  <%= request.acc_phno %></p>
+                <p>Status:  <%= request.status %></p>
+                <a href="#" class="btn btn-danger rounded-4">
+                  Approve
+                </a>
+              </div>
+            </div>
+            <% }); %>
           </div>
-        </div>
+        <% } else { %>
+          <p>No requests found</p>
+        <% } %>
       </div>
     </div>
-    <!-- second row closed -->
-
+  </div>
+</div>
+<!-- second row closed -->
     <!-- About  -->
     <div class="container col-xxl-8 px-4 py-5">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">

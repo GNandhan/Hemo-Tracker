@@ -160,9 +160,14 @@
     <div class="container">
       <h2 class="mt-5">Donor List</h2>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        <% donors.forEach((donor)=> { %>
+        <% if (donors.length === 0) { %>
           <div class="col">
-            <div class="card rounded-4 red-shadow border border-end-0 border-danger" data-bs-toggle="collapse"
+            <p>No Donor found</p>
+          </div>
+        <% } else { %>
+          <% donors.forEach((donor)=> { %>
+          <div class="col">
+            <div class="card rounded-4 shadow border border-end-0 border-danger" data-bs-toggle="collapse"
               href="#collapseExample<%= donor.id %>" role="button" aria-expanded="false"
               aria-controls="collapseExample<%= donor.id %>">
               <div class="card-body d-flex align-items-center justify-content-between">
@@ -208,8 +213,8 @@
               </div>
             </div>
           </div>
-          <% }) %>
-
+          <% }); %>
+          <% } %>
       </div>
     </div>
     <!-- Donor list closed -->
