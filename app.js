@@ -184,7 +184,6 @@ app.post('/accept/acclog', encoder, function (req, res) {
   });
 });
 // -------------------------------------------------------------------------------------------------------
-
 // Route to render the page and fetch donor data and locations
 app.get('/accept/acchom', (req, res) => {
   // Fetch location and blood group from query parameters
@@ -220,13 +219,30 @@ app.get('/accept/acchom', (req, res) => {
         } else {
           // Fetch acceptor details from session
           const acceptorDetails = req.session.user;
-          // Pass donor data and locations to the template
-          res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails });
+          
+          // Fetch request data for the logged-in acceptor
+          connection.query(
+            'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, d.don_fname, d.don_lname, d.don_blood ' +
+            'FROM request r ' +
+            'JOIN donor d ON r.donor_id = d.don_id ' +
+            'WHERE r.acceptor_id = ?',
+            [acceptorDetails.acc_id],
+            (error, requestResults, fields) => {
+              if (error) {
+                console.log('Error fetching request data from the database:', error);
+                res.status(500).send('Internal Server Error');
+              } else {
+                // Pass donor data, locations, and request data to the template
+                res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults });
+              }
+            }
+          );
         }
       });
     }
   });
 });
+
 // -------------------------------------------------------------------------------------------------------
 
 // Route to handle sending request

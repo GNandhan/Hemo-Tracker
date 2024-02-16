@@ -15,7 +15,7 @@
     body {
       font-family: "Questrial";
       /* Add padding to body for fixed navbar */
-      transition: 0.5s;
+      transition: 1.5s;
       /* Add smooth transition effect */
     }
 
@@ -48,14 +48,14 @@
     }
 
     .blood-bank-navbar {
-      background: linear-gradient(to bottom, #ffffff81, #ffffff41);
+      background: linear-gradient(to bottom, #ffffffb6, #ffffff77);
       /* Gradient colors */
       color: white;
       /* Text color */
     }
 
     #navbar {
-      transition: width 2.5s ease;
+      transition: width 1s ease;
       /* Add smooth transition effect */
     }
 
@@ -89,11 +89,11 @@
               <a href="/"
                 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <img src="user/images/icon.png" class="bi me-2" width="50" height="50">
-                <span class="fs-4" style="font-family: 'Questrial';">Hemo <span
+                <span class="fs-2 fw-bold" style="font-family: 'Questrial';">Hemo <span
                     class="text-danger">Tracker</span></span>
               </a>
               <ul class="nav">
-                <li class="nav-item"><a href="#login-section" class="nav-link text-dark">Login</a></li>
+                <li class="nav-item"><a href="#login-section" class="nav-link text-dark fs-5">Login</a></li>
               </ul>
             </header>
           </div>
@@ -317,7 +317,7 @@
       if (window.scrollY > 0) {
         navbar.classList.remove("container");
         navbar.classList.add("container-fluid");
-        navbar.style.transition = "2.5s"; // Add smooth transition effect
+        navbar.style.transition = "1.5s"; // Add smooth transition effect
       } else {
         navbar.classList.remove("container-fluid");
         navbar.classList.add("container");

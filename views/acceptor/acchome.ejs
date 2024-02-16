@@ -55,35 +55,45 @@
     </div>
     <!-- navbar closed -->
     <!-- sidebar -->
-    <div class="offcanvas offcanvas-end rounded-4 my-5 mx-3" tabindex="-1" id="profileOffcanvas"
-      aria-labelledby="profileOffcanvasLabel" style="width: 350px;height: 500px;background-color: rgb(255, 255, 255);">
-      <div class="offcanvas-header py-0">
-        <h4 class="offcanvas-title text-light" id="profileOffcanvasLabel">.</h4>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body text-start px-4">
-        <!-- Acceptor profile -->
-        <img src="/user/images/user.png" alt="" width="50" class="rounded-4">
-        <div class="fs-5"><%= acceptor.acc_fname %> <%= acceptor.acc_lname %></div>
-        <div>Gender: <span class="fw-bold"><%= acceptor.acc_gender %></span></div>
-        <div>Mail Id: <span class="fw-bold"><%= acceptor.acc_mail %></span></div>
-        <div>Phone: <span class="fw-bold"><%= acceptor.acc_phno %></span></div> <hr>
-        <!-- Acceptor profile closed-->
-        <!-- Request sent -->
-        <div class="fs-5">Request Sent</div>
-        <div class="card shadow rounded-4">
-          <div class="card-body d-flex align-items-center justify-content-between">
-            <div>
-              <div class="card-text">Donor name :</div>
-              <div class="card-text">Blood Group :</div>
-            </div>
-            <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
-          </div>
-        </div>
-        <!-- Request sent closed -->
-      </div>      
+<div class="offcanvas offcanvas-end rounded-4 my-5 mx-3" tabindex="-1" id="profileOffcanvas"
+aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;background-color: rgb(255, 255, 255);">
+<div class="offcanvas-header py-0">
+  <h4 class="offcanvas-title text-light" id="profileOffcanvasLabel">.</h4>
+  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+</div>
+<div class="offcanvas-body text-start px-4">
+  <!-- Acceptor profile -->
+  <div class="row align-items-center mb-4">
+    <div class="col-auto">
+      <img src="/user/images/user.png" alt="" width="90" class="rounded-4">
     </div>
-    <!-- sidebar closed -->
+    <div class="col border-start">
+      <div class="fs-5"><%= acceptor.acc_fname %> <%= acceptor.acc_lname %></div>
+      <div>Gender: <span class="fw-bold"><%= acceptor.acc_gender %></span></div>
+      <div>Mail Id: <span class="fw-bold"><%= acceptor.acc_mail %></span></div>
+      <div>Phone: <span class="fw-bold"><%= acceptor.acc_phno %></span></div>
+    </div>
+  </div>
+  <!-- Acceptor profile closed-->
+
+  <!-- Request sent -->
+  <div class="fs-5">Request Sent</div>
+  <% requests.forEach((request) => { %>
+    <div class="card shadow rounded-4 mb-3">
+      <div class="card-body d-flex align-items-center justify-content-between">
+        <div>
+          <div class="card-text">Donor name: <%= request.don_fname %> <%= request.don_lname %></div>
+          <div class="card-text">Blood Group: <%= request.don_blood %></div>
+        </div>
+        <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
+      </div>
+    </div>
+  <% }); %>
+  <!-- Request sent closed -->
+</div>      
+</div>
+<!-- sidebar closed -->
+
 
     <!-- first row -->
     <div class="container">
@@ -91,7 +101,6 @@
         <div class="col-lg-6 col-md col-sm-12 col-12 py-5">
           <h1 class="display-3 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving life
           </h1>
-          <a class="btn but but-comtent btn-danger px-5 rounded-pill">DONATE NOW</a>
         </div>
         <div class="col-lg-6 col-md col-sm-12 col-12">
           <img src="/user/images/img3.png" alt="" width="100%" class="animated-image">
@@ -199,9 +208,6 @@
             management. Donors can easily register on the platform, providing essential information such as personal
             details, blood type, and contact information. The system ensures data security and privacy, adhering to
             regulatory standards for healthcare information.</p>
-          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-            <button type="button" class="btn btn-danger rounded-pill btn-lg px-4 me-md-2">Signup</button>
-          </div>
         </div>
         <div class="col-10 col-sm-8 col-lg-6">
           <img src="/user/images/img2.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
