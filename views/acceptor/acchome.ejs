@@ -62,11 +62,25 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body text-start px-4">
+        <!-- Acceptor profile -->
         <img src="/user/images/user.png" alt="" width="50" class="rounded-4">
         <div class="fs-5"><%= acceptor.acc_fname %> <%= acceptor.acc_lname %></div>
         <div>Gender: <span class="fw-bold"><%= acceptor.acc_gender %></span></div>
         <div>Mail Id: <span class="fw-bold"><%= acceptor.acc_mail %></span></div>
         <div>Phone: <span class="fw-bold"><%= acceptor.acc_phno %></span></div> <hr>
+        <!-- Acceptor profile closed-->
+        <!-- Request sent -->
+        <div class="fs-5">Request Sent</div>
+        <div class="card shadow rounded-4">
+          <div class="card-body d-flex align-items-center justify-content-between">
+            <div>
+              <div class="card-text">Donor name :</div>
+              <div class="card-text">Blood Group :</div>
+            </div>
+            <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
+          </div>
+        </div>
+        <!-- Request sent closed -->
       </div>      
     </div>
     <!-- sidebar closed -->
