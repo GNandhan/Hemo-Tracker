@@ -54,20 +54,32 @@ app.get('/home', (req, res) => {
     // If logged in, retrieve user's information from session
     const user = req.session.user;
 
-    // Fetch request data for the logged-in donor including acceptor details
+    // Fetch donor details
     connection.query(
-      'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, a.acc_fname, a.acc_lname, a.acc_gender, a.acc_mail, a.acc_phno ' +
-      'FROM request r ' +
-      'JOIN acceptor a ON r.acceptor_id = a.acc_id ' +
-      'WHERE r.donor_id = ?',
+      'SELECT * FROM donor WHERE don_id = ?',
       [user.don_id],
-      (error, requestResults, fields) => {
+      (error, donorResults, fields) => {
         if (error) {
-          console.log('Error fetching request data from the database:', error);
+          console.log('Error fetching donor data from the database:', error);
           res.status(500).send('Internal Server Error');
         } else {
-          // Render the home page template and pass the user's information and request data to it
-          res.render('donor/home', { user, requests: requestResults });
+          // Fetch request data for the logged-in donor including acceptor details
+          connection.query(
+            'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, a.acc_fname, a.acc_lname, a.acc_gender, a.acc_mail, a.acc_phno ' +
+            'FROM request r ' +
+            'JOIN acceptor a ON r.acceptor_id = a.acc_id ' +
+            'WHERE r.donor_id = ?',
+            [user.don_id],
+            (error, requestResults, fields) => {
+              if (error) {
+                console.log('Error fetching request data from the database:', error);
+                res.status(500).send('Internal Server Error');
+              } else {
+                // Render the home page template and pass the user's information, donor details, and request data to it
+                res.render('donor/home', { user, donor: donorResults[0], requests: requestResults });
+              }
+            }
+          );
         }
       }
     );
@@ -76,7 +88,6 @@ app.get('/home', (req, res) => {
     res.redirect('/dlog');
   }
 });
-
 
 // -------------------------------------------------------------------------------------------------------
 

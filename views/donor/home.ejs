@@ -16,7 +16,7 @@
       background-image: url(user/images/bg1.png);
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center; 
+      background-position: center;
       /* background-attachment: fixed;  */
       font-family: "Questrial";
     }
@@ -41,24 +41,99 @@
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
           <img src="user/images/icon.png" class="bi me-2" width="50" height="50">
           <use xlink:href="#bootstrap" />
-          <span class="fs-4" style="font-family: 'Questrial';">Hemo  <span class="text-danger">Tracker</span></span>
+          <span class="fs-4" style="font-family: 'Questrial';">Hemo <span class="text-danger">Tracker</span></span>
         </a>
         <ul class="nav">
           <li class="nav-item"><a href="/" class="nav-link text-danger border-bottom border-danger">Home</a></li>
           <li class="nav-item"><a href="/about" class="nav-link text-dark">About</a></li>
-          <li class="nav-item"><a href="/contact" class="nav-link text-dark">Contact</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-dark" data-bs-toggle="offcanvas"
+              data-bs-target="#profileOffcanvas" aria-controls="profileOffcanvas">Profile</a></li>
           <li class="nav-item"><a href="/dlog" class="nav-link text-dark">Logout</a></li>
         </ul>
       </header>
     </div>
     <!-- navbar closed -->
+    <!-- sidebar -->
+    <div class="offcanvas offcanvas-end rounded-4 my-5 mx-3" tabindex="-1" id="profileOffcanvas"
+      aria-labelledby="profileOffcanvasLabel" style="width: 400px;height: 500px;background-color: rgb(255, 255, 255);">
+      <div class="offcanvas-header py-0">
+        <h4 class="offcanvas-title text-light" id="profileOffcanvasLabel">.</h4>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body text-start px-4">
+        <!-- donor profile -->
+        <div class="row align-items-center mb-4 pb-3 border-bottom border-danger">
+          <div class="col-auto">
+            <img src="/user/images/user.png" alt="" width="90" class="rounded-4">
+          </div>
+          <div class="col border-start">
+            <div class="fs-5">
+              <%= donor.don_fname %>
+                <%= donor.don_lname %>
+            </div>
+            <div>Gender: <span class="fw-bold">
+                <%= donor.don_gender %>
+              </span></div>
+            <div>Age: <span class="fw-bold">
+                <%= donor.don_age %>
+              </span></div>
+            <div>DOB: <span class="fw-bold">
+                <%= donor.don_dob %>
+              </span></div>
+            <div>Mail Id: <span class="fw-bold">
+                <%= donor.don_mail %>
+              </span></div>
+            <div>Ph No: <span class="fw-bold">
+                <%= donor.don_phno %>
+              </span></div>
+            <div>Location: <span class="fw-bold">
+                <%= donor.don_location %>
+              </span></div>
+            <div>State: <span class="fw-bold">
+                <%= donor.don_state %>
+              </span></div>
+            <div>Pincode: <span class="fw-bold">
+                <%= donor.don_pin %>
+              </span></div>
+          </div>
+        </div>
+
+        <!-- Donor profile closed-->
+        <!-- Request Received -->
+        <div class="fs-5">Request Received</div>
+        <% requests.forEach((request)=> { %>
+          <div class="card shadow rounded-4 mb-3">
+            <div class="card-body d-flex align-items-center justify-content-between">
+              <div>
+                <div class="card-text">
+                  Acceptor name: <%= request.acc_fname %>
+                    <%= request.acc_lname %>
+                </div>
+                <div class="card-text">
+                  Mob no: <%= request.acc_phno %> <!-- Add this line to display acceptor's blood group -->
+                </div>
+              </div>
+              <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
+            </div>
+          </div>
+          <% }); %>
+            <!-- Request Received closed -->
+
+
+      </div>
+    </div>
+    <!-- sidebar closed -->
     <!-- first row -->
     <div class="container">
       <div class="row">
         <div class=" col-lg-6 col-md col-sm-12 col-12 py-5">
           <!-- Displaying the logged-in user's name -->
-          <div class="h2"><%= user.don_fname %>  <%= user.don_lname %></div>
-          <div class="display-4 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving life
+          <div class="h2">
+            <%= user.don_fname %>
+              <%= user.don_lname %>
+          </div>
+          <div class="display-4 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving
+            life
           </div>
         </div>
         <div class="col-lg-6 col-md col-sm-12 col-12">
@@ -66,54 +141,62 @@
         </div>
       </div>
     </div>
-    <!-- first row closed -->    
-<!-- second row -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg">
-      <div class="card rounded-4 p-3" style="background-color: rgba(255, 255, 255, 0.13);">
-        <h1 class="fw-semibold">Request</h1>
-        <% if (requests && requests.length > 0) { %>
-          <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 border-left">
-            <% requests.forEach(request => { %>
-            <div class="col d-flex align-items-start pb-5 border-bottom">
-              <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
-                <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
+    <!-- first row closed -->
+    <!-- second row -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg">
+          <div class="card rounded-4 p-3" style="background-color: rgba(255, 255, 255, 0.13);">
+            <h1 class="fw-semibold">Request</h1>
+            <% if (requests && requests.length> 0) { %>
+              <div class="row g-4 py-5 row-cols-1 row-cols-lg-3 border-left">
+                <% requests.forEach(request=> { %>
+                  <div class="col d-flex align-items-start pb-5 border-bottom">
+                    <div class=" d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                      <img src="/user/images/request.png" alt="request icon" class="rounded-4" width="50">
+                    </div>
+                    <div>
+                      <h3 class="fs-2 text-body-emphasis">
+                        <%= request.acc_fname %>
+                          <%= request.acc_lname %>
+                      </h3>
+                      <p>Gender: <%= request.acc_gender %>
+                      </p>
+                      <p>Mail Id: <%= request.acc_mail %>
+                      </p>
+                      <p>Phone: <%= request.acc_phno %>
+                      </p>
+                      <p>Status: <%= request.status %>
+                      </p>
+                      <a href="#" class="btn btn-danger rounded-4">
+                        Approve
+                      </a>
+                    </div>
+                  </div>
+                  <% }); %>
               </div>
-              <div>
-                <h3 class="fs-2 text-body-emphasis"><%= request.acc_fname %> <%= request.acc_lname %></h3>
-                <p>Gender:  <%= request.acc_gender %></p>
-                <p>Mail Id:  <%= request.acc_mail %></p>
-                <p>Phone:  <%= request.acc_phno %></p>
-                <p>Status:  <%= request.status %></p>
-                <a href="#" class="btn btn-danger rounded-4">
-                  Approve
-                </a>
-              </div>
-            </div>
-            <% }); %>
+              <% } else { %>
+                <p>No requests found</p>
+                <% } %>
           </div>
-        <% } else { %>
-          <p>No requests found</p>
-        <% } %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- second row closed -->
+    <!-- second row closed -->
     <!-- About  -->
     <div class="container col-xxl-8 px-4 py-5">
       <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
         <div class="col-lg-6">
-          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">About <span class="text-danger">Hemo-Tracker</span></h1>
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">About <span class="text-danger">Hemo-Tracker</span>
+          </h1>
           <p class="lead">The system incorporates two primary functions: donor registration and acceptor request
             management. Donors can easily register on the platform, providing essential information such as personal
             details, blood type, and contact information. The system ensures data security and privacy, adhering to
             regulatory standards for healthcare information.</p>
         </div>
         <div class="col-10 col-sm-8 col-lg-6">
-          <img src="user/images/img2.png" class="animated-image d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700"
-            height="500" loading="lazy">
+          <img src="user/images/img2.png" class="animated-image d-block mx-lg-auto img-fluid" alt="Bootstrap Themes"
+            width="700" height="500" loading="lazy">
         </div>
       </div>
     </div>
