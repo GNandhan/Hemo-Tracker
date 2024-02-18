@@ -149,6 +149,22 @@ app.post('/dlog', encoder, function (req, res) {
       }
   });
 });
+// -------------------------------------------------------------------------------------------------------
+// Route to handle approval of request
+app.post('/approveRequest/:requestId', (req, res) => {
+  const requestId = req.params.requestId;
+
+  // Update the status of the request in the database from "pending" to "active"
+  connection.query('UPDATE request SET status = "active" WHERE req_id = ?', [requestId], (error, results, fields) => {
+    if (error) {
+      console.log('Error updating request status:', error);
+      res.status(500).send('Internal Server Error');
+    } else {
+      console.log('Request approved successfully.');
+      res.send('Request approved successfully.');
+    }
+  });
+});
 
 // -------------------------------------------------------------------------------------------------------
 

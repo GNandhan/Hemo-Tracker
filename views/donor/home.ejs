@@ -168,9 +168,7 @@
                       </p>
                       <p>Status: <%= request.status %>
                       </p>
-                      <a href="#" class="btn btn-danger rounded-4">
-                        Approve
-                      </a>
+                      <a href="#" class="btn btn-danger rounded-4" onclick="approveRequest(<%= request.req_id %>)">Approve</a>                     
                     </div>
                   </div>
                   <% }); %>
@@ -277,6 +275,32 @@
       }, 1000); // Replace 2000 with the desired delay in milliseconds
     });
   </script>
+  <script>
+    function approveRequest(requestId) {
+      // Send a request to the server to update the status of the request
+      fetch(`/approveRequest/${requestId}`, {
+        method: 'POST'
+      })
+      .then(response => {
+        if (response.ok) {
+          // Disable other approve buttons
+          const approveButtons = document.querySelectorAll('.btn-danger');
+          approveButtons.forEach(button => {
+            button.disabled = true;
+          });
+          return response.text();
+        }
+        throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
