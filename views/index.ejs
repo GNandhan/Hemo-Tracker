@@ -9,6 +9,8 @@
   <link rel="icon" href="user/images/icon.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
@@ -84,10 +86,13 @@
       }
     }
 
+    .counter {
+      font-size: 50px;
+    }
+
     .carousel-caption {
       text-align: left;
       left: 10%;
-      /* Adjust the left positioning as needed */
     }
   </style>
 </head>
@@ -174,15 +179,15 @@
           <div class="row align-items-center">
             <div class="col-lg-10 text-start wid">
               <a href="/accept/acclog" class="text-light text-decoration-none">
-              <h3>Register Now</h3>
-              <p>Hospitals, clinics, and individuals in need of blood can register their requirements on Hemotracker,
-                specifying blood type and quantity needed to connect with willing donors efficiently.</p>
+                <h3>Register Now</h3>
+                <p>Hospitals, clinics, and individuals in need of blood can register their requirements on Hemotracker,
+                  specifying blood type and quantity needed to connect with willing donors efficiently.</p>
               </a>
             </div>
             <div class="col-lg">
               <a href="/accept/acclog" class="text-light text-decoration-none">
-              <i class="bi bi-box-arrow-in-right fs-3"></i>
-            </a>
+                <i class="bi bi-box-arrow-in-right fs-3"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -191,14 +196,15 @@
           <div class="row align-items-center ">
             <div class="col-lg-10 text-start">
               <a href="/dlog" class="text-light text-decoration-none">
-              <h3>Donate Now</h3>
-              <p>Hemotracker allows individuals to sign up as potential blood donors, providing personal information and
-                blood type to facilitate matching with recipients.</p>
+                <h3>Donate Now</h3>
+                <p>Hemotracker allows individuals to sign up as potential blood donors, providing personal information
+                  and
+                  blood type to facilitate matching with recipients.</p>
               </a>
             </div>
             <div class="col-lg text-white">
               <a href="/dlog" class="text-light text-decoration-none">
-              <i class="bi bi-box-arrow-in-right fs-3"></i>
+                <i class="bi bi-box-arrow-in-right fs-3"></i>
               </a>
             </div>
           </div>
@@ -206,55 +212,81 @@
       </div>
     </div>
     <!-- registration for donor and acceptor section closed -->
-<!-- section 3 -->
-<div class="container my-5">
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <div class="card h-100 border-0 shadow-lg">
-        <img src="user/images/card1.jpg" class="card-img-top p-3" alt="...">
-        <div class="card-body">
-          <h5 class="card-title fw-bold text-center">Become a donate</h5>
-          <p class="card-text">Becoming a donor is easy - just choose a cause close to your heart and give what you can. 
-            Your small contribution can make a big difference in someone's life.</p>
+    <!-- section 3 -->
+    <div class="container my-5">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="card h-100 border-0 shadow-lg">
+            <img src="user/images/card1.jpg" class="card-img-top p-3" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">Become a donate</h5>
+              <p class="card-text">Becoming a donor is easy - just choose a cause close to your heart and give what you
+                can.
+                Your small contribution can make a big difference in someone's life.</p>
+            </div>
+            <div class="card-footer bg-dark">
+              <small class="text-white">Read More</small>
+            </div>
+          </div>
         </div>
-        <div class="card-footer bg-dark">
-          <small class="text-white">Read More</small>
+        <div class="col">
+          <div class="card h-100 border-0 shadow-lg">
+            <img src="user/images/card2.jpg" class="card-img-top p-3" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">Why give blood?</h5>
+              <p class="card-text">Giving blood saves lives. It's a simple act that can make a huge difference in
+                someone else's life.</p>
+            </div>
+            <div class="card-footer bg-dark">
+              <small class="text-white">Read More</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 border-0 shadow-lg">
+            <img src="user/images/card3.jpg" class="card-img-top p-3" alt="...">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-center">How Donation Help?</h5>
+              <p class="card-text">Donations provide essential resources to those in need, offering food, shelter, and
+                medical care.
+                Your contribution can make a meaningful difference in improving the lives of others.</p>
+            </div>
+            <div class="card-footer bg-dark">
+              <small class="text-white">Read More</small>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card h-100 border-0 shadow-lg">
-        <img src="user/images/card2.jpg" class="card-img-top p-3" alt="...">
-        <div class="card-body">
-          <h5 class="card-title fw-bold text-center">Why give blood?</h5>
-          <p class="card-text">Giving blood saves lives. It's a simple act that can make a huge difference in someone else's life.</p>
+    <!-- section 3 closed -->
+    <!-- Section 4 -->
+    <div class="container-fluid"
+      style="background-image: url(/user/images/acceptor.jpg); background-repeat: no-repeat;background-size: cover;">
+      <div class="row text-center text-light mx-5 p-4" style="backdrop-filter: blur(30px);">
+        <div class="col-lg col-md col-sm-12 col-12 count" id="experience">
+          <img src="/user/images/c1.png" alt="Icons">
+          <div class="counter" data-count="5">0</div>
+          <h5>YEAR EXPERIENCE</h5>
         </div>
-        <div class="card-footer bg-dark">
-          <small class="text-white">Read More</small>
+        <div class="col-lg col-md col-sm-12 col-12 count" id="donors">
+          <img src="/user/images/c2.png" alt="Icons">
+          <div class="counter" data-count="19">0</div>
+          <h5>HAPPY DONORS</h5>
         </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card h-100 border-0 shadow-lg">
-        <img src="user/images/card3.jpg" class="card-img-top p-3" alt="...">
-        <div class="card-body">
-          <h5 class="card-title fw-bold text-center">How Donation Help?</h5>
-          <p class="card-text">Donations provide essential resources to those in need, offering food, shelter, and medical care.
-             Your contribution can make a meaningful difference in improving the lives of others.</p>
-        </div>
-        <div class="card-footer bg-dark">
-          <small class="text-white">Read More</small>
+        <div class="col-lg col-md col-sm-12 col-12 count" id="recipients">
+          <img src="/user/images/c4.png" alt="Icons">
+          <div class="counter" data-count="21">0</div>
+          <h5>HAPPY RECIPIENTS</h5>
         </div>
       </div>
     </div>
-  </div>
-</div>
-<!-- section 3 closed -->
+    <!-- Section 4 closed -->
     <!-- ----------- -->
     <div class="container my-5">
       <div class="row">
+        <h1 class="display-6 fw-bold text-center text-body-emphasis lh-1 mb-3"><span class="text-dark">Our Best
+            Services</span></h1>
         <div class="col-lg-10 col-md col-sm col mt-3">
-          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3"><span class="text-danger">Hemo-Tracker</span></h1>
           <p class="lead border-start border-danger px-3">The system incorporates two primary functions: donor
             registration and acceptor request
             management. Donors can easily register on the platform, providing essential information such as personal
@@ -400,6 +432,27 @@
         preloader.style.display = "none";
         page.style.display = "block";
       }, 50); // Replace 2000 with the desired delay in milliseconds
+    });
+  </script>
+  <script>
+    $('.counter').each(function () {
+      var $this = $(this),
+        countTo = $this.attr('data-count');
+
+      $({ countNum: $this.text() }).animate({
+        countNum: countTo
+      },
+        {
+          duration: 5000,
+          easing: 'linear',
+          step: function () {
+            $this.text(Math.floor(this.countNum));
+          },
+          complete: function () {
+            $this.text(this.countNum);
+            //alert('finished');
+          }
+        });
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
