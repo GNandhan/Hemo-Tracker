@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2024 at 07:15 AM
+-- Generation Time: Feb 19, 2024 at 09:45 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.25
 
@@ -66,7 +66,8 @@ INSERT INTO `acceptor` (`acc_id`, `acc_fname`, `acc_lname`, `acc_gender`, `acc_m
 (22, 'aaa', 'bbb', 'Male', 'aaa12@gmail.com', '9988665598', 'aaa12@'),
 (23, 'kareem', 'lala', 'Male', 'kareem123@gmail.com', '8956748556', 'kareem123@'),
 (24, 'dathu', 'palthu', 'Male', 'dathu123@gmail.com', '8754986598', 'dathu123@'),
-(25, 'salman', 'muhammed', 'Male', 'salman123@gmail.com', '8754986587', 'salman123@');
+(25, 'salman', 'muhammed', 'Male', 'salman123@gmail.com', '8754986587', 'salman123@'),
+(26, 'Nandha', 'Mohan', 'Female', 'nandha123@gmail.com', '8754986587', 'nandha123@');
 
 -- --------------------------------------------------------
 
@@ -129,7 +130,9 @@ INSERT INTO `donor` (`don_id`, `don_fname`, `don_lname`, `don_gender`, `don_age`
 (12, 'surya', 'mol', 'Female', '18', '2006-01-01', 'surya12', 'O-', '9876543212', 'petta', 'Alabama', 'surya', 686579),
 (13, 'abhinav', 'Krishna', 'Male', '20', '2024-02-01', 'abhin@gmail.com', 'A+', '9685748556', 'Thodupuzha', 'Alabama', 'abhinav123@', 685586),
 (14, 'avinash', 'narayan', 'Male', '30', '2024-02-20', 'avinash123@gmail.com', 'A+', '9865329865', 'Thrissur', 'Alabama', 'avinash123@', 986578),
-(16, 'Abdul', 'Kareem', 'Male', '25', '2024-02-01', 'kareem123@gmail.com', 'A+', '9865875498', 'kozhikode', 'Kerala', 'kareem123@', 875498);
+(16, 'Abdul', 'Kareem', 'Male', '25', '2024-02-01', 'kareem123@gmail.com', 'A+', '9865875498', 'kozhikode', 'Kerala', 'kareem123@', 875498),
+(17, 'Gowrinandhan', 'S', 'Male', '21', '2024-02-01', 'gowrinandhan95@gmail.com', 'B+', '8113846443', 'Thodupuzha', 'Kerala', 'gowri123@', 685586),
+(18, 'Nandha', 'Mohan', 'Female', '22', '2024-02-08', 'nandha123@gmail.com', 'O+', '5598875498', 'ernakulam', 'Kerala', 'nandha123@', 986587);
 
 -- --------------------------------------------------------
 
@@ -141,7 +144,7 @@ CREATE TABLE `request` (
   `req_id` int(11) NOT NULL,
   `donor_id` int(11) NOT NULL,
   `acceptor_id` int(11) NOT NULL,
-  `status` varchar(50) NOT NULL
+  `status` enum('pending','active','','') NOT NULL DEFAULT 'pending'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -157,9 +160,10 @@ INSERT INTO `request` (`req_id`, `donor_id`, `acceptor_id`, `status`) VALUES
 (6, 10, 8, 'pending'),
 (7, 8, 8, 'pending'),
 (8, 10, 1, 'pending'),
-(9, 1, 4, 'pending'),
+(9, 1, 4, 'active'),
 (10, 1, 1, 'pending'),
-(11, 3, 1, 'pending');
+(11, 3, 1, 'pending'),
+(12, 8, 26, 'pending');
 
 --
 -- Indexes for dumped tables
@@ -197,7 +201,7 @@ ALTER TABLE `request`
 -- AUTO_INCREMENT for table `acceptor`
 --
 ALTER TABLE `acceptor`
-  MODIFY `acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `acc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -209,13 +213,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `donor`
 --
 ALTER TABLE `donor`
-  MODIFY `don_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `don_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
