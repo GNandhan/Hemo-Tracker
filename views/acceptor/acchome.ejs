@@ -36,6 +36,16 @@
   </div>
   <!-- for display after the preloader -->
   <div class="page">
+    <div id="requestToast" class="toast align-items-center rounded-4 position-fixed top-0 end-0 mt-3 me-3" role="alert"
+      aria-live="assertive" aria-atomic="true">
+      <div class="d-flex  bg-danger text-white rounded-4">
+        <div class="toast-body fs-5">
+          <%= successMessage %>
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+
     <!-- navbar -->
     <div class="container rounded-bottom border-0 ">
       <header class=" d-flex flex-wrap justify-content-center  mb-4 border-bottom">
@@ -114,8 +124,6 @@
           </div>
           <% }); %>
             <!-- Request sent closed -->
-
-
       </div>
     </div>
     <!-- sidebar closed -->
@@ -125,7 +133,8 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 col-md col-sm-12 col-12 py-5">
-          <h1 class="display-3 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for saving life
+          <h1 class="display-3 fw-semibold">Donate <br> your <span class="text-danger">Blood</span> <br> for
+            saving life
           </h1>
         </div>
         <div class="col-lg-6 col-md col-sm-12 col-12">
@@ -169,71 +178,91 @@
       </form>
     </div>
     <!-- second row closed -->
-<!-- Donor List -->
-<!-- Display donor list -->
-<div class="container">
-  <h2 class="mt-5">Donor List</h2>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    <% if (donors.length === 0) { %>
-    <div class="col">
-      <p>No Donor found</p>
-    </div>
-    <% } else { %>
-    <% donors.forEach((donor, index) => { %>
-      <div class="col">
-        <div class="card rounded-4 shadow border border-end-0 border-danger">
-          <div class="card-body d-flex align-items-center justify-content-between">
-            <div>
-              <h5 class="card-title">
-                <%= donor.don_fname %> <%= donor.don_lname %>
-              </h5>
-              <span class="card-text">Blood Group: <%= donor.don_blood %></span>
-              <p class="card-text">Place: <%= donor.don_location %></p>
-              <button type="button" class="btn btn-danger rounded-4" data-bs-toggle="modal"
-                data-bs-target="#donorModal<%= index %>">View Details</button>
-            </div>
-            <div>
-              <!-- Here goes the donor image -->
-              <img src="/user/images/user.png" class="rounded-4" width="100" alt="Donor Image">
-            </div>
+    <!-- Donor List -->
+    <!-- Display donor list -->
+    <div class="container">
+      <h2 class="mt-5">Donor List</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% if (donors.length===0) { %>
+          <div class="col">
+            <p>No Donor found</p>
           </div>
-        </div>
-      </div>      
-    <!-- Modal -->
-    <div class="modal fade" id="donorModal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content rounded-4">
-          <div class="modal-header" style="border-bottom: none;">
-            <!-- <h5 class="modal-title text-danger" id="exampleModalLabel">Donor Details</h5> -->
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body mb-4">
-            <div class="row">
-              <div class="col-md-6">
-                <!-- Here goes the donor image -->
-                <img src="/user/images/user.png" class="rounded-4" width="100%" alt="Donor Image" style="border-radius: 20px;">
+          <% } else { %>
+            <% donors.forEach((donor, index)=> { %>
+              <div class="col">
+                <div class="card rounded-4 shadow border border-end-0 border-danger">
+                  <div class="card-body d-flex align-items-center justify-content-between">
+                    <div>
+                      <h5 class="card-title">
+                        <%= donor.don_fname %>
+                          <%= donor.don_lname %>
+                      </h5>
+                      <span class="card-text">Blood Group: <%= donor.don_blood %></span>
+                      <p class="card-text">Place: <%= donor.don_location %>
+                      </p>
+                      <button type="button" class="btn btn-danger rounded-4" data-bs-toggle="modal"
+                        data-bs-target="#donorModal<%= index %>">View Details</button>
+                    </div>
+                    <div>
+                      <!-- Here goes the donor image -->
+                      <img src="/user/images/user.png" class="rounded-4" width="100" alt="Donor Image">
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-md-6">
-                <p>Donor Id: <%= donor.don_id %></p>
-                <p>Gender: <%= donor.don_gender %></p>
-                <p>Age: <%= donor.don_age %></p>
-                <p>Date of Birth: <%= donor.don_dob %></p>
-                <p>Email: <%= donor.don_mail %></p>
-                <p>Phno: <%= donor.don_phno %></p>
-                <p>Location: <%= donor.don_location %></p>
-                <p>State: <%= donor.don_state %></p>
+              <!-- Modal -->
+              <div class="modal fade" id="donorModal<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content rounded-4">
+                    <div class="modal-header" style="border-bottom: none;">
+                      <!-- <h5 class="modal-title text-danger" id="exampleModalLabel">Donor Details</h5> -->
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body mb-4">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <!-- Here goes the donor image -->
+                          <img src="/user/images/user.png" class="rounded-4" width="100%" alt="Donor Image"
+                            style="border-radius: 20px;">
+                        </div>
+                        <div class="col-md-6 border-start">
+                          <h2 class="text-uppercase">
+                            <%= donor.don_fname %>
+                              <%= donor.don_lname %>
+                          </h2>
+                          <p>Donor Id: <%= donor.don_id %>
+                          </p>
+                          <p>Gender: <%= donor.don_gender %>
+                          </p>
+                          <p>Age: <%= donor.don_age %>
+                          </p>
+                          <p>Date of Birth: <%= donor.don_dob %>
+                          </p>
+                          <p>Email: <%= donor.don_mail %>
+                          </p>
+                          <p>Phno: <%= donor.don_phno %>
+                          </p>
+                          <p>Location: <%= donor.don_location %>
+                          </p>
+                          <p>State: <%= donor.don_state %>
+                          </p>
+                          <form action="/accept/sendRequest" method="post">
+                            <input type="hidden" name="donorId" id="donorId" value="<%= donor.don_id %>">
+                            <button type="submit" class="btn btn-danger rounded-4">Send Request</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
+
+              <% }); %>
+                <% } %>
       </div>
     </div>
-    
-    <% }); %>
-    <% } %>
-  </div>
-</div>
-<!-- Donor list closed -->
+    <!-- Donor list closed -->
 
 
     <!-- About  -->
@@ -242,9 +271,12 @@
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">About Hemo- <span
               class="text-danger">Tracker</span></h1>
-          <p class="lead">The system incorporates and two primary functions: donor registration and acceptor request
-            management. Donors can easily register on the platform, providing essential information such as personal
-            details, blood type, and contact information. The system ensures data security and privacy, adhering to
+          <p class="lead">The system incorporates and two primary functions: donor registration and acceptor
+            request
+            management. Donors can easily register on the platform, providing essential information such as
+            personal
+            details, blood type, and contact information. The system ensures data security and privacy, adhering
+            to
             regulatory standards for healthcare information.</p>
         </div>
         <div class="col-10 col-sm-8 col-lg-6">
@@ -266,7 +298,8 @@
           <div>
             <h3 class="fs-2 text-body-emphasis">24x7 Support</h3>
             <p>Our 24x7 Support team is always ready to assist you with any queries regarding blood donation,
-              appointments, or general information. We are here round-the-clock to ensure your donation experience is
+              appointments, or general information. We are here round-the-clock to ensure your donation experience
+              is
               smooth and hassle-free.</p>
           </div>
         </div>
@@ -277,8 +310,10 @@
           </div>
           <div>
             <h3 class="fs-2 text-body-emphasis">Real-time Availability</h3>
-            <p>Our real-time availability feature allows you to check the current status of blood donation slots. You
-              can see available time slots and select the most convenient one for you to donate blood and save lives.
+            <p>Our real-time availability feature allows you to check the current status of blood donation slots.
+              You
+              can see available time slots and select the most convenient one for you to donate blood and save
+              lives.
             </p>
           </div>
         </div>
@@ -335,19 +370,24 @@
       }, 1000); // Replace 2000 with the desired delay in milliseconds
     });
   </script>
-  <!-- Javascript for displaying the alert message that request is successfully sent -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Check if the requestSent query parameter exists in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const requestSent = urlParams.get('requestSent');
+    // Check if the success message exists
+    const successMessage = "<%= successMessage %>";
 
-    // If requestSent is true, display an alert message
-    if (requestSent === 'true') {
-      alert('Request sent successfully!');
+    // If success message exists, show the toast
+    if (successMessage) {
+      // Get the toast element
+      const toast = document.getElementById('requestToast');
+
+      // Initialize Bootstrap toast
+      const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 5000 }); // Adjust delay as needed
+
+      // Show the toast
+      bsToast.show();
     }
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

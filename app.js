@@ -45,7 +45,6 @@ app.use('/accept', acceptRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', donorRoutes);
 
-
 // -------------------------------------------------------------------------------------------------------
 // Route handler for the home page
 app.get('/home', (req, res) => {
@@ -54,6 +53,8 @@ app.get('/home', (req, res) => {
     // If logged in, retrieve user's information from session
     const user = req.session.user;
 
+    // Check for a success message
+    const successMessage = req.query.success === '1' ? 'Login successful!' : '';
     // Fetch donor details
     connection.query(
       'SELECT * FROM donor WHERE don_id = ?',
@@ -76,7 +77,7 @@ app.get('/home', (req, res) => {
                 res.status(500).send('Internal Server Error');
               } else {
                 // Render the home page template and pass the user's information, donor details, and request data to it
-                res.render('donor/home', { user, donor: donorResults[0], requests: requestResults });
+                res.render('donor/home', { user, donor: donorResults[0], requests: requestResults, successMessage });
               }
             }
           );
@@ -96,8 +97,8 @@ app.post('/dreg', encoder, function (req, res) {
   var rfirstname = req.body.firstname;
   var rlastname = req.body.lastname;
   var rgender = req.body.gender;
-  var rage = req.body.age; 
-  var rdob = req.body.dob; 
+  var rage = req.body.age;
+  var rdob = req.body.dob;
   var remail = req.body.email;
   var rblood = req.body.blood;
   var rpassword = req.body.password;
@@ -105,10 +106,10 @@ app.post('/dreg', encoder, function (req, res) {
   var rstate = req.body.state;
   var rphno = req.body.phno;
   var rpin = req.body.pincode;
-  
+
 
   // Insert data into the database
-  connection.query("INSERT INTO `donor` (`don_fname`, `don_lname`, `don_gender`, `don_age`, `don_dob`, `don_mail`, `don_blood`, `don_phno`, `don_location`, `don_state`, `don_password`, `don_pin`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",[rfirstname, rlastname, rgender, rage, rdob, remail, rblood, rphno, rcity, rstate, rpassword, rpin], (error, results, fields) => {
+  connection.query("INSERT INTO `donor` (`don_fname`, `don_lname`, `don_gender`, `don_age`, `don_dob`, `don_mail`, `don_blood`, `don_phno`, `don_location`, `don_state`, `don_password`, `don_pin`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", [rfirstname, rlastname, rgender, rage, rdob, remail, rblood, rphno, rcity, rstate, rpassword, rpin], (error, results, fields) => {
     if (error) {
       console.error("Error inserting data into database:", error.message);
       return res.status(500).send("Error registering user.");
@@ -124,29 +125,22 @@ app.post('/dlog', encoder, function (req, res) {
 
   // Query the database to check if the user exists
   connection.query("SELECT * FROM `donor` WHERE `don_mail` = ? AND `don_password` = ?", [email, password], (error, results, fields) => {
-
-      if (error) {
-          console.error("Error querying database:", error.message);
-          return res.status(500).send("Error logging in.");
-      }
-      // If user exists, redirect to home page
-      if (results.length > 0) {
-           // Save user data in session upon successful login
-          req.session.user = results[0];
-          console.log("User logged in successfully!");
-          // Inject script to show Bootstrap alert message upon successful login
-          const script = `
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-              <strong>Login successful!</strong> Welcome back, ${results[0].don_fname}!
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-          `;
-          res.send(script + '<script>window.location.href = "/home";</script>'); // Redirect to home page after showing alert
-      } else {
-          // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
-          console.log("Invalid email or password");
-          res.redirect('/dlog'); 
-      }
+    if (error) {
+      console.error("Error querying database:", error.message);
+      return res.status(500).send("Error logging in.");
+    }
+    // If user exists, redirect to home page
+    if (results.length > 0) {
+      // Save user data in session upon successful login
+      req.session.user = results[0];
+      console.log("User logged in successfully!");
+      console.log("Donor details:", req.session.user); // Log donor details
+      res.redirect('/home?success=1')
+    } else {
+      // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
+      console.log("Invalid email or password");
+      res.redirect('/dlog');
+    }
   });
 });
 // -------------------------------------------------------------------------------------------------------
@@ -179,7 +173,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
 
   // Insert data into the database
   connection.query("INSERT INTO `acceptor` (`acc_fname`, `acc_lname`, `acc_gender`, `acc_mail`, `acc_phno`, `acc_password`) VALUES (?, ?, ?, ?, ?, ?)",
-    [lfirstname, llastname, lgender, lemail, lphno,  lpassword], (error, results, fields) => {
+    [lfirstname, llastname, lgender, lemail, lphno, lpassword], (error, results, fields) => {
       if (error) {
         console.error("Error inserting data into database:", error.message);
         return res.status(500).send("Error registering user.");
@@ -190,7 +184,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
 
       // Send a success message to the registration page
       res.redirect('/accept/acclog');
-  });
+    });
 });
 // -------------------------------------------------------------------------------------------------------
 // Route to handle login form submission
@@ -200,22 +194,22 @@ app.post('/accept/acclog', encoder, function (req, res) {
 
   // Query the database to check if the user exists
   connection.query("SELECT * FROM `acceptor` WHERE `acc_mail` = ? AND `acc_password` = ?", [acemail, acepassword], (error, results, fields) => {
-      if (error) {
-          console.error("Error querying database:", error.message);
-          return res.status(500).send("Error logging in.");
-      }
-      // If user exists, redirect to home page
-      if (results.length > 0) {
-           // Save user data in session upon successful login
-          req.session.user = results[0];
-          console.log("User logged in successfully!");
-          console.log("Acceptor details:", req.session.user); // Log acceptor details
-          res.redirect('/accept/acchom');
-      } else {
-          // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
-          console.log("Invalid email or password");
-          res.redirect('/accept/acclog'); 
-      }
+    if (error) {
+      console.error("Error querying database:", error.message);
+      return res.status(500).send("Error logging in.");
+    }
+    // If user exists, redirect to home page
+    if (results.length > 0) {
+      // Save user data in session upon successful login
+      req.session.user = results[0];
+      console.log("User logged in successfully!");
+      console.log("Acceptor details:", req.session.user); // Log acceptor details
+      res.redirect('/accept/acchom?success=1');
+    } else {
+      // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
+      console.log("Invalid email or password");
+      res.redirect('/accept/acclog');
+    }
   });
 });
 // -------------------------------------------------------------------------------------------------------
@@ -225,6 +219,9 @@ app.get('/accept/acchom', (req, res) => {
   const location = req.query.location;
   const bloodGroup = req.query.bloodGroup;
 
+  // Check for a success message
+  const successMessage = req.query.success === '1' ? 'Login successful!' : '';
+
   // Build the SQL query based on the selected location and blood group
   let query = 'SELECT * FROM donor';
   const queryParams = [];
@@ -233,7 +230,7 @@ app.get('/accept/acchom', (req, res) => {
     query += ' WHERE don_location = ? AND don_blood = ?';
     queryParams.push(location, bloodGroup);
   } else if (location) {
-    query += ' WHERE don_location = ?'; 
+    query += ' WHERE don_location = ?';
     queryParams.push(location);
   } else if (bloodGroup) {
     query += ' WHERE don_blood = ?';
@@ -254,7 +251,7 @@ app.get('/accept/acchom', (req, res) => {
         } else {
           // Fetch acceptor details from session
           const acceptorDetails = req.session.user;
-          
+
           // Fetch request data for the logged-in acceptor
           connection.query(
             'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, d.don_fname, d.don_lname, d.don_blood ' +
@@ -268,7 +265,7 @@ app.get('/accept/acchom', (req, res) => {
                 res.status(500).send('Internal Server Error');
               } else {
                 // Pass donor data, locations, and request data to the template
-                res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults });
+                res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults, successMessage });
               }
             }
           );
@@ -277,8 +274,6 @@ app.get('/accept/acchom', (req, res) => {
     }
   });
 });
-
-
 
 // -------------------------------------------------------------------------------------------------------
 
@@ -325,21 +320,21 @@ app.post('/admin/adlog', encoder, function (req, res) {
 
   // Query the database to check if the user exists
   connection.query("SELECT * FROM `admin` WHERE `admin_email` = ? AND `admin_password` = ?", [ademail, adpassword], (error, results, fields) => {
-      if (error) {
-          console.error("Error querying database:", error.message);
-          return res.status(500).send("Error logging in.");
-      }
-      // If user exists, redirect to home page
-      if (results.length > 0) {
-           // Save user data in session upon successful login
-          req.session.user = results[0];
-          console.log("User logged in successfully!");
-          res.redirect('/admin/addash');
-      } else {
-          // If user does not exist or credentials are incorrect, redirect back to login page with an error query parameter
-          console.log("Invalid email or password");
-          res.redirect('/admin/adlog?error=1'); 
-      }
+    if (error) {
+      console.error("Error querying database:", error.message);
+      return res.status(500).send("Error logging in.");
+    }
+    // If user exists, redirect to home page
+    if (results.length > 0) {
+      // Save user data in session upon successful login
+      req.session.user = results[0];
+      console.log("User logged in successfully!");
+      res.redirect('/admin/addash');
+    } else {
+      // If user does not exist or credentials are incorrect, redirect back to login page with an error query parameter
+      console.log("Invalid email or password");
+      res.redirect('/admin/adlog?error=1');
+    }
   });
 });
 // -------------------------------------------------------------------------------------------------------
