@@ -45,50 +45,6 @@ app.use('/accept', acceptRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', donorRoutes);
 
-// -------------------------------------------------------------------------------------------------------
-// Route handler for the home page
-app.get('/home', (req, res) => {
-  // Check if user is logged in
-  if (req.session.user) {
-    // If logged in, retrieve user's information from session
-    const user = req.session.user;
-
-    // Check for a success message
-    const successMessage = req.query.success === '1' ? 'Login successful!' : '';
-    // Fetch donor details
-    connection.query(
-      'SELECT * FROM donor WHERE don_id = ?',
-      [user.don_id],
-      (error, donorResults, fields) => {
-        if (error) {
-          console.log('Error fetching donor data from the database:', error);
-          res.status(500).send('Internal Server Error');
-        } else {
-          // Fetch request data for the logged-in donor including acceptor details
-          connection.query(
-            'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, a.acc_fname, a.acc_lname, a.acc_gender, a.acc_mail, a.acc_phno ' +
-            'FROM request r ' +
-            'JOIN acceptor a ON r.acceptor_id = a.acc_id ' +
-            'WHERE r.donor_id = ?',
-            [user.don_id],
-            (error, requestResults, fields) => {
-              if (error) {
-                console.log('Error fetching request data from the database:', error);
-                res.status(500).send('Internal Server Error');
-              } else {
-                // Render the home page template and pass the user's information, donor details, and request data to it
-                res.render('donor/home', { user, donor: donorResults[0], requests: requestResults, successMessage });
-              }
-            }
-          );
-        }
-      }
-    );
-  } else {
-    // If user is not logged in, redirect to login page
-    res.redirect('/dlog');
-  }
-});
 
 // -------------------------------------------------------------------------------------------------------
 
@@ -135,7 +91,7 @@ app.post('/dlog', encoder, function (req, res) {
       req.session.user = results[0];
       console.log("User logged in successfully!");
       console.log("Donor details:", req.session.user); // Log donor details
-      res.redirect('/home?success=1')
+      res.redirect('/home?success=2')
     } else {
       // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
       console.log("Invalid email or password");
@@ -143,6 +99,51 @@ app.post('/dlog', encoder, function (req, res) {
     }
   });
 });
+// -------------------------------------------------------------------------------------------------------
+// Route handler for the home page
+app.get('/home', (req, res) => {
+  // Check if user is logged in
+  if (req.session.user) {
+    // If logged in, retrieve user's information from session
+    const user = req.session.user;
+
+    // Check for a success message
+    const successMessage2 = req.query.success === '2' ? 'Login successful!' : '';
+    // Fetch donor details
+    connection.query(
+      'SELECT * FROM donor WHERE don_id = ?',
+      [user.don_id],
+      (error, donorResults, fields) => {
+        if (error) {
+          console.log('Error fetching donor data from the database:', error);
+          res.status(500).send('Internal Server Error');
+        } else {
+          // Fetch request data for the logged-in donor including acceptor details
+          connection.query(
+            'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, a.acc_fname, a.acc_lname, a.acc_gender, a.acc_mail, a.acc_phno ' +
+            'FROM request r ' +
+            'JOIN acceptor a ON r.acceptor_id = a.acc_id ' +
+            'WHERE r.donor_id = ?',
+            [user.don_id],
+            (error, requestResults, fields) => {
+              if (error) {
+                console.log('Error fetching request data from the database:', error);
+                res.status(500).send('Internal Server Error');
+              } else {
+                // Render the home page template and pass the user's information, donor details, and request data to it
+                res.render('donor/home', { user, donor: donorResults[0], requests: requestResults, successMessage2 });
+              }
+            }
+          );
+        }
+      }
+    );
+  } else {
+    // If user is not logged in, redirect to login page
+    res.redirect('/dlog');
+  }
+});
+
 // -------------------------------------------------------------------------------------------------------
 // Route to handle approval of request
 app.post('/approveRequest/:requestId', (req, res) => {
