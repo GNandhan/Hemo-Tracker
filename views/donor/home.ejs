@@ -35,9 +35,10 @@
   </div>
   <!-- for display after the preloader -->
   <div class="page">
-    <div id="requestToast" class="toast align-items-center rounded-4 position-fixed top-0 end-0 mt-3 me-3" role="alert"
+    <div id="requestToast"
+      class="toast align-items-center rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3" role="alert"
       aria-live="assertive" aria-atomic="true">
-      <div class="d-flex  bg-danger text-white rounded-4">
+      <div class="p-2 d-flex  bg-danger text-white rounded-4">
         <div class="toast-body fs-5">
           <%= successMessage2 %>
         </div>
@@ -291,17 +292,16 @@
         </ul>
       </footer>
     </div>
-    <div id="approveToast" class="toast align-items-center rounded-4 position-fixed top-0 end-0 mt-3 me-3" role="alert"
+    <div id="approveToast"
+      class="toast align-items-center rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3" role="alert"
       aria-live="assertive" aria-atomic="true">
-      <div class="d-flex bg-success text-white rounded-4">
+      <div class="p-2 bg-danger text-white rounded-4">
         <div class="toast-body fs-5">
           Request Approved Successfully!
         </div>
         <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
-
-
 
   </div>
   <script>
@@ -357,7 +357,7 @@
       const toast = document.getElementById('requestToast');
 
       // Initialize Bootstrap toast
-      const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 5000 }); // Adjust delay as needed
+      const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 3000 }); // Adjust delay as needed
 
       // Show the toast
       bsToast.show();

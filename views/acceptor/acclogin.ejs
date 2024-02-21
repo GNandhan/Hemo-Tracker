@@ -40,6 +40,20 @@
   </div>
   <!-- for display after the preloader -->
   <div class="page">
+    <!-- Add this section for toast messages -->
+    <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 11">
+      <div id="toast"
+        class="toast align-items-center text-white bg-danger border-0 rounded-4  position-fixed top-0 start-50 translate-middle-x mt-3"
+        role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="p-2 d-flex">
+          <div class="toast-body">
+            Successfully registered! You can now log in.
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+            aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
     <!-- navbar -->
     <div class="container">
       <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
@@ -161,8 +175,16 @@
         passwordInput.type = "password";
       }
     });
+  </script>=
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const successQueryParam = new URLSearchParams(window.location.search).get('success');
+      if (successQueryParam === '1') {
+        const successMessage = new bootstrap.Toast(document.getElementById('toast'));
+        successMessage.show();
+      }
+    });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

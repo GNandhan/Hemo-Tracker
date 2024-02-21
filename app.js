@@ -71,7 +71,7 @@ app.post('/dreg', encoder, function (req, res) {
       return res.status(500).send("Error registering user.");
     }
     console.log("User registered successfully!");
-    res.redirect('/dlog'); // Redirect to login page after successful registration
+    res.redirect('/dlog?success=1'); // Redirect to login page after successful registration
   });
 });
 // Route to handle login form submission of donor
@@ -184,7 +184,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
       console.log("User registered successfully!");
 
       // Send a success message to the registration page
-      res.redirect('/accept/acclog');
+      res.redirect('/accept/acclog?success=1'); // Add success parameter here
     });
 });
 // -------------------------------------------------------------------------------------------------------
