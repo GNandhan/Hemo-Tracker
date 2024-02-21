@@ -222,6 +222,8 @@ app.get('/accept/acchom', (req, res) => {
 
   // Check for a success message
   const successMessage = req.query.success === '1' ? 'Login successful!' : '';
+  // Check for a request sent message
+  const requestSent = req.query.requestSent === 'true' ? true : false;
 
   // Build the SQL query based on the selected location and blood group
   let query = 'SELECT * FROM donor';
@@ -266,7 +268,7 @@ app.get('/accept/acchom', (req, res) => {
                 res.status(500).send('Internal Server Error');
               } else {
                 // Pass donor data, locations, and request data to the template
-                res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults, successMessage });
+                 res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults, successMessage, requestSent });
               }
             }
           );
@@ -309,7 +311,7 @@ app.post('/accept/sendRequest', encoder, function (req, res) {
 
       // Request sent successfully!
       console.log("Request sent successfully!");
-      res.redirect('/accept/acchom?requestSent=true'); // Redirect back to the donor list page
+      res.redirect('/accept/acchom?requestSent=true'); // Redirect back to the donor list page and indicate that the request was sent successfully
     });
 });
 

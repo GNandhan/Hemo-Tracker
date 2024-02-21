@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2024 at 09:45 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.25
+-- Generation Time: Feb 21, 2024 at 06:39 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -153,7 +153,7 @@ CREATE TABLE `request` (
 
 INSERT INTO `request` (`req_id`, `donor_id`, `acceptor_id`, `status`) VALUES
 (1, 1, 1, 'pending'),
-(2, 1, 1, 'pending'),
+(2, 1, 1, 'active'),
 (3, 0, 1, 'pending'),
 (4, 0, 1, 'pending'),
 (5, 1, 1, 'pending'),
@@ -161,9 +161,10 @@ INSERT INTO `request` (`req_id`, `donor_id`, `acceptor_id`, `status`) VALUES
 (7, 8, 8, 'pending'),
 (8, 10, 1, 'pending'),
 (9, 1, 4, 'active'),
-(10, 1, 1, 'pending'),
+(10, 1, 1, 'active'),
 (11, 3, 1, 'pending'),
-(12, 8, 26, 'pending');
+(12, 8, 26, 'pending'),
+(13, 2, 4, 'active');
 
 --
 -- Indexes for dumped tables
@@ -219,7 +220,7 @@ ALTER TABLE `donor`
 -- AUTO_INCREMENT for table `request`
 --
 ALTER TABLE `request`
-  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `req_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

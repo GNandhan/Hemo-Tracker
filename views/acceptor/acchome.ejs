@@ -355,6 +355,16 @@
                 height="24" alt="instagram icon"></a></li>
         </ul>
       </footer>
+      <!-- request Toast -->
+      <div id="requestToast2" class="toast align-items-center rounded-4 position-fixed top-0 end-0 mt-3 me-3" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex  bg-danger text-white rounded-4">
+          <div class="toast-body fs-5">
+            Request sent successfully!
+          </div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+      <!-- request Toast closed  -->
     </div>
 
 
@@ -387,6 +397,24 @@
       bsToast.show();
     }
   </script>
+<script>
+  // Check if the request was sent successfully
+  const requestSent = "<%= requestSent %>";
+
+  // If request was sent successfully, show the toast
+  if (requestSent === 'true') {
+    // Get the toast element
+    const toast = document.getElementById('requestToast2');
+
+    // Initialize Bootstrap toast
+    const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 5000 }); // Adjust delay as needed
+
+    // Show the toast
+    bsToast.show();
+  }
+</script>
+
+
 
 </body>
 
