@@ -80,9 +80,29 @@ app.post('/dreg', encoder, function (req, res) {
       return res.status(500).send("Error registering user.");
     }
     console.log("User registered successfully!");
+     // Send a success email to the registered donor
+     var mailOptions = {
+      from: 'hemotracker2024@gmail.com', // Your email address
+      to: req.body.email, // Donor's email address
+      subject: 'Registration Successful',
+      text: 'Dear Donor, \n\nWe are thrilled to inform you that your registration with Hemotracker has been successfully processed! Welcome aboard!. \n\nYour decision to join us in our mission to make a difference in healthcare is greatly appreciated. With your participation, we are one step closer to creating a robust platform that facilitates the critical process of blood donation and tracking. \n\nOnce again, thank you for choosing Hemotracker. Together, we can make a meaningful impact on the lives of patients in need of life-saving blood transfusions. \n\nWarm regards, \n\n\n\nHemotracker Team.'
+    };
+
+    // Send the email
+    transporter.sendMail(mailOptions, function (error, info) {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).send("Error sending email.");
+      } else {
+        console.log('Email sent: ' + info.response);
+        // Email sent successfully!
+        // You may want to handle this success case accordingly
+      }
+    });
     res.redirect('/dlog?success=1'); // Redirect to login page after successful registration
   });
 });
+//----------------------------------------------------------------------------------------
 // Route to handle login form submission of donor
 app.post('/dlog', encoder, function (req, res) {
   var email = req.body.donmail;
