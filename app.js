@@ -3,6 +3,7 @@ const session = require("express-session");
 const mysql = require("mysql");
 const ejs = require('ejs');
 const bodyParser = require("body-parser");
+var nodemailer = require('nodemailer');
 const encoder = bodyParser.urlencoded();
 
 const app = express();
@@ -35,6 +36,14 @@ connection.connect(function (error) {
   }
 });
 
+// transporter object using SMTP transport
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'gowrinandhan95@gmail.com', // Your email address
+    pass: 'gejs cvwl nlrh jryr' // Your email app password
+  }
+});
 // Import Routes
 const donorRoutes = require('./routes/donorRoutes');
 const acceptRoutes = require('./routes/acceptRoutes');
@@ -185,6 +194,27 @@ app.post('/accept/accreg', encoder, function (req, res) {
 
       // Send a success message to the registration page
       res.redirect('/accept/acclog?success=1'); // Add success parameter here
+
+      // Send an email to the registered acceptor
+      var  mailOptions = {
+        from: 'gowrinandhan95@gmail.com', // Your email address
+        to: req.body.email, // Acceptor's email address
+        subject: 'Registration Successful',
+        text: 'Dear Acceptor, \n\nYou have successfully registered with our platform. Thank you for joining us!'
+      };
+
+      // Send the email
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          console.error("Error sending email:", error);
+          return res.status(500).send("Error sending email.");
+        } else {
+          console.log('Email sent: ' + info.response);
+          // Email sent successfully!
+          // You may want to handle this success case accordingly
+        }
+      });
+
     });
 });
 // -------------------------------------------------------------------------------------------------------
@@ -268,7 +298,7 @@ app.get('/accept/acchom', (req, res) => {
                 res.status(500).send('Internal Server Error');
               } else {
                 // Pass donor data, locations, and request data to the template
-                 res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults, successMessage, requestSent });
+                res.render('acceptor/acchome', { donors: donorResults, locations: locationResults, acceptor: acceptorDetails, requests: requestResults, successMessage, requestSent });
               }
             }
           );

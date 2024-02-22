@@ -110,8 +110,12 @@
                     </div>
                     <!-- Password input -->
                     <div class="form-outline m-2 text-start">
-                      <label class="form-label">Password <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control rounded-3" name="password" required />
+                      <label class="form-label"  for="form3Example4">Password <span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <input type="password"  id="form3Example4" class="form-control rounded-start-2" name="password" required />
+                      <button class="btn bg-light border border-start-0 rounded-end-2" type="button" id="showPassword">
+                      <i class="bi bi-eye"></i></button>
+                    </div>
                     </div>
                   </div>
 
@@ -174,6 +178,15 @@
         preloader.style.display = "none";
         page.style.display = "block";
       }, 1000); // Replace 2000 with the desired delay in milliseconds
+    });
+     // Toggle password visibility
+     document.getElementById("showPassword").addEventListener("click", function () {
+      const passwordInput = document.getElementById("form3Example4");
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+      } else {
+        passwordInput.type = "password";
+      }
     });
   </script>
   <script>
