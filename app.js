@@ -40,8 +40,8 @@ connection.connect(function (error) {
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'gowrinandhan95@gmail.com', // Your email address
-    pass: 'gejs cvwl nlrh jryr' // Your email app password
+    user: 'hemotracker2024@gmail.com', // Your email address
+    pass: 'thuz uiso adwf jhhz' // Your email app password
   }
 });
 // Import Routes
@@ -197,10 +197,10 @@ app.post('/accept/accreg', encoder, function (req, res) {
 
       // Send an email to the registered acceptor
       var  mailOptions = {
-        from: 'gowrinandhan95@gmail.com', // Your email address
+        from: 'hemotracker2024@gmail.com', // Your email address
         to: req.body.email, // Acceptor's email address
         subject: 'Registration Successful',
-        text: 'Dear Acceptor, \n\nYou have successfully registered with our platform. Thank you for joining us!'
+        text: 'Dear Acceptor, \n\nWe are thrilled to inform you that your registration with Hemotracker has been successfully processed! Welcome aboard!. \n\nYour decision to join us in our mission to make a difference in healthcare is greatly appreciated. With your participation, we are one step closer to creating a robust platform that facilitates the critical process of blood donation and tracking. \n\nAs a registered acceptor, you now have access to a suite of features designed to streamline your blood management processes. Whether you are a hospital, clinic, or blood bank, Hemotracker is here to support you every step of the way. \n\n Once again, thank you for choosing Hemotracker. Together, we can make a meaningful impact on the lives of patients in need of life-saving blood transfusions. \n\n Warm regards, \n\n\n\nHemotracker Team.'
       };
 
       // Send the email
