@@ -125,17 +125,15 @@
                 </div>
                 <% if (request.status==='pending' ) { %>
                   <!-- Display status on a red button -->
-                  Status: <button id="approveButton_<%= request.req_id %>" class="btn btn-danger rounded-pill shadow"
-                    onclick="approveRequest('<%= request.req_id %>')">
+                  Status: <button id="approveButton_<%= request.req_id %>" class="btn btn-danger rounded-pill shadow" onclick="approveRequest('<%= request.req_id %>')">
                     <%= request.status %>
                   </button>
-                  <% } else if (request.status==='active' ) { %>
-                    <!-- Display status on a green button -->
-                    Status: <button id="approveButton_<%= request.req_id %>" class="btn btn-success rounded-pill shadow"
-                      disabled>
-                      <%= request.status %>
-                    </button>
-                    <% } %>
+                <% } else if (request.status==='active' ) { %>
+                  <!-- Display status on a green button -->
+                  Status: <button id="approveButton_<%= request.req_id %>" class="btn btn-success rounded-pill shadow" disabled>
+                    <%= request.status %>
+                  </button>
+                <% } %>
               </div>
               <img src="/user/images/user2.png" class="rounded-4 ml-auto" width="70" alt="Donor Image">
             </div>
