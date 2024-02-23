@@ -174,18 +174,75 @@ app.get('/home', (req, res) => {
 });
 
 // -------------------------------------------------------------------------------------------------------
-// Route to handle approval of request
+// Route to handle donor accepting the request
 app.post('/approveRequest/:requestId', (req, res) => {
   const requestId = req.params.requestId;
 
-  // Update the status of the request in the database from "pending" to "active"
-  connection.query('UPDATE request SET status = "active" WHERE req_id = ?', [requestId], (error, results, fields) => {
+  // Update the status of the request in the database from "pending" to "accepted"
+  connection.query('UPDATE request SET status = "accepted" WHERE req_id = ?', [requestId], (error, results, fields) => {
     if (error) {
       console.log('Error updating request status:', error);
       res.status(500).send('Internal Server Error');
     } else {
-      console.log('Request approved successfully.');
-      res.send('Request approved successfully.');
+      // Fetch request details including donor and acceptor information
+      connection.query(
+        'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, d.don_fname, d.don_lname, d.don_mail, ' +
+        'a.acc_fname, a.acc_lname, a.acc_mail ' +
+        'FROM request r ' +
+        'JOIN donor d ON r.donor_id = d.don_id ' +
+        'JOIN acceptor a ON r.acceptor_id = a.acc_id ' +
+        'WHERE r.req_id = ?',
+        [requestId],
+        (error, requestDetails, fields) => {
+          if (error) {
+            console.log('Error fetching request details from the database:', error);
+            res.status(500).send('Internal Server Error');
+          } else {
+            // Construct email message
+            const donorName = `${requestDetails[0].don_fname} ${requestDetails[0].don_lname}`;
+            const donorEmail = requestDetails[0].don_mail;
+            const acceptorName = `${requestDetails[0].acc_fname} ${requestDetails[0].acc_lname}`;
+            const acceptorEmail = requestDetails[0].acc_mail;
+
+            const mailOptionsDonor = {
+              from: 'hemotracker2024@gmail.com', // Your email address
+              to: donorEmail, // Donor's email address
+              subject: 'Blood Request Accepted',
+              text: `Dear ${donorName}, \n\nYour blood donation request has been accepted by ${acceptorName}. Thank you for your willingness to donate. Please coordinate with ${acceptorName} for further details. \n\nThank you, \n\nHemotracker Team`
+            };
+
+            const mailOptionsAcceptor = {
+              from: 'hemotracker2024@gmail.com', // Your email address
+              to: acceptorEmail, // Acceptor's email address
+              subject: 'Blood Request Accepted',
+              text: `Dear ${acceptorName}, \n\nYou have successfully accepted the blood donation request from ${donorName}. Please coordinate with ${donorName} for further details. \n\nThank you, \n\nHemotracker Team`
+            };
+
+            // Send emails to both donor and acceptor
+            transporter.sendMail(mailOptionsDonor, function (errorDonor, infoDonor) {
+              if (errorDonor) {
+                console.error("Error sending email to donor:", errorDonor);
+                return res.status(500).send("Error sending email to donor.");
+              } else {
+                console.log('Email sent to donor: ' + infoDonor.response);
+                // Email sent successfully to donor!
+              }
+            });
+
+            transporter.sendMail(mailOptionsAcceptor, function (errorAcceptor, infoAcceptor) {
+              if (errorAcceptor) {
+                console.error("Error sending email to acceptor:", errorAcceptor);
+                return res.status(500).send("Error sending email to acceptor.");
+              } else {
+                console.log('Email sent to acceptor: ' + infoAcceptor.response);
+                // Email sent successfully to acceptor!
+              }
+            });
+
+            res.send('Request accepted successfully.');
+          }
+        }
+      );
     }
   });
 });
@@ -249,20 +306,21 @@ app.post('/accept/acclog', encoder, function (req, res) {
       console.error("Error querying database:", error.message);
       return res.status(500).send("Error logging in.");
     }
-    // If user exists, redirect to home page
+    // If user exists, store user data in session and redirect to home page
     if (results.length > 0) {
       // Save user data in session upon successful login
       req.session.user = results[0];
       console.log("User logged in successfully!");
       console.log("Acceptor details:", req.session.user); // Log acceptor details
-      res.redirect('/accept/acchom?success=1');
+      res.redirect('/accept/acchom');
     } else {
-      // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
+      // If user does not exist or credentials are incorrect, redirect back to login page with an error query parameter
       console.log("Invalid email or password");
-      res.redirect('/accept/acclog');
+      res.redirect('/accept/acclog?error=1');
     }
   });
 });
+
 // -------------------------------------------------------------------------------------------------------
 // Route to render the page and fetch filtered donor data and locations
 app.get('/accept/acchom', (req, res) => {
@@ -329,7 +387,6 @@ app.get('/accept/acchom', (req, res) => {
 });
 
 // -------------------------------------------------------------------------------------------------------
-
 // Route to handle sending request
 app.post('/accept/sendRequest', encoder, function (req, res) {
   // Retrieve donor ID from the form
@@ -341,15 +398,15 @@ app.post('/accept/sendRequest', encoder, function (req, res) {
   // Retrieve acceptor details from the session or wherever you store them
   const acceptorDetails = req.session.user; // Adjust accordingly
 
+  // Log acceptor details for debugging
+  console.log("Acceptor details from session:", acceptorDetails);
+
   // Check if acceptor details are available
   if (!acceptorDetails || !acceptorDetails.acc_id) {
     console.error("Acceptor details not found in session.");
     console.log("Session data:", req.session); // Log session data
     return res.status(500).send("Error sending request. Acceptor details not found.");
   }
-
-  // Log acceptor details for debugging
-  console.log("Acceptor details:", acceptorDetails);
 
   // Store the request details in the database
   connection.query("INSERT INTO `request` (`donor_id`, `acceptor_id`, `status`) VALUES (?, ?, 'pending')",
@@ -358,10 +415,60 @@ app.post('/accept/sendRequest', encoder, function (req, res) {
         console.error("Error inserting request data into database:", error.message);
         return res.status(500).send("Error sending request.");
       }
-
       // Request sent successfully!
       console.log("Request sent successfully!");
-      res.redirect('/accept/acchom?requestSent=true'); // Redirect back to the donor list page and indicate that the request was sent successfully
+
+      // Fetch donor details for sending email
+      connection.query("SELECT * FROM `donor` WHERE `don_id` = ?", [donorId], (error, donorResults, fields) => {
+        if (error) {
+          console.error("Error fetching donor data from database:", error.message);
+          return res.status(500).send("Error fetching donor data.");
+        }
+
+        // Construct email message
+        const donorName = `${donorResults[0].don_fname} ${donorResults[0].don_lname}`;
+        const donorEmail = donorResults[0].don_mail;
+        const acceptorName = `${acceptorDetails.acc_fname} ${acceptorDetails.acc_lname}`;
+        const acceptorEmail = acceptorDetails.acc_mail;
+
+        const mailOptionsDonor = {
+          from: 'hemotracker2024@gmail.com', // Your email address
+          to: donorEmail, // Donor's email address
+          subject: 'Blood Request Received',
+          text: `Dear ${donorName}, \n\nYou have received a blood donation request from ${acceptorName}. Please log in to your account to view and respond to the request. \n\nThank you, \n\nHemotracker Team`
+        };
+
+        const mailOptionsAcceptor = {
+          from: 'hemotracker2024@gmail.com', // Your email address
+          to: acceptorEmail, // Acceptor's email address
+          subject: 'Blood Request Sent',
+          text: `Dear ${acceptorName}, \n\nYour blood donation request has been sent successfully to ${donorName}. Please wait for their response. \n\nThank you, \n\nHemotracker Team`
+        };
+
+        // Send emails to both donor and acceptor
+        transporter.sendMail(mailOptionsDonor, function (errorDonor, infoDonor) {
+          if (errorDonor) {
+            console.error("Error sending email to donor:", errorDonor);
+            return res.status(500).send("Error sending email to donor.");
+          } else {
+            console.log('Email sent to donor: ' + infoDonor.response);
+            // Email sent successfully to donor!
+          }
+        });
+
+        transporter.sendMail(mailOptionsAcceptor, function (errorAcceptor, infoAcceptor) {
+          if (errorAcceptor) {
+            console.error("Error sending email to acceptor:", errorAcceptor);
+            return res.status(500).send("Error sending email to acceptor.");
+          } else {
+            console.log('Email sent to acceptor: ' + infoAcceptor.response);
+            // Email sent successfully to acceptor!
+          }
+        });
+
+        // Redirect back to the donor list page and indicate that the request was sent successfully
+        res.redirect('/accept/acchom?requestSent=true');
+      });
     });
 });
 
