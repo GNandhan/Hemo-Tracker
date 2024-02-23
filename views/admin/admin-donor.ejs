@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,125 +12,152 @@
 <body>
   <!-- including navbar -->
   <%- include("admin-nav") %>
-  <!--  Header End --> 
-      <div class="container-fluid">
-        <div class="card">
-          <div class="card-body">
-            <h1 class="fw-semibold mb-4">Donor</h1>
+    <!--  Header End -->
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="fw-semibold mb-4">Donor</h1>
 
-<!-- table begin -->
-            <div class="card w-100">
-              <div class="card-body p-4">
-                <h5 class="card-title fw-semibold mb-4">Donor List</h5>
-                <div class="table-responsive">
-                  <table class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
+          <!-- table begin -->
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <h5 class="card-title fw-semibold mb-4">Donor List</h5>
+              <div class="table-responsive">
+                <table class="table text-nowrap mb-0 align-middle">
+                  <thead class="text-dark fs-4">
+                    <tr>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Id</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Firstname</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Lastname</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Gender</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Age</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Dob</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Mail</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Blood Group</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Phno</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Location</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">State</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Password</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Pincode</h6>
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <% donors.forEach(function(donor) { %>
                       <tr>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Id</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Firstname</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Lastname</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Gender</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Age</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Dob</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Mail</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Blood Group</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Phno</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Location</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">State</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Password</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Pincode</h6>
-                        </th>
+                        <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">
+                            <%= donor.don_id %>
+                          </h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_fname %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_lname %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_gender %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_age %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_dob %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_mail %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_blood %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_phno %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_location %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_state %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_password %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= donor.don_pin %>
+                          </p>
+                        </td>
+
                       </tr>
-                    </thead>
+                      <% }); %>
+                  </tbody>
 
-                    <tbody>
-                      <% donors.forEach(function(donor) { %>
-                      <tr>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0"><%= donor.don_id %></h6>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_fname %></p>                         
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_lname %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_gender %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_age %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_dob %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_mail %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_blood %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_phno %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_location %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_state %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_password %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= donor.don_pin %></p>
-                        </td>
-                        
-                      </tr>   
-                      <% }); %>                  
-                    </tbody>  
-
-                  </table>
-                </div>
+                </table>
               </div>
             </div>
-<!-- table end -->
           </div>
+          <!-- table end -->
         </div>
       </div>
     </div>
-  </div>
-  <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
-  <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/admin/js/sidebarmenu.js"></script>
-  <script src="/admin/js/app.min.js"></script>
-  <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
-  <script src="/admin/js/dashboard.js"></script>
+    </div>
+    </div>
+    <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/sidebarmenu.js"></script>
+    <script src="/admin/js/app.min.js"></script>
+    <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
+    <script src="/admin/js/dashboard.js"></script>
 </body>
+
 </html>

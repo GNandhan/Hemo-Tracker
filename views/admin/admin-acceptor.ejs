@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,89 +12,104 @@
 <body>
   <!-- including navbar -->
   <%- include("admin-nav") %>
-  <!--  Header End -->
-<!--  Header End -->
-      <div class="container-fluid px-2">
-        <div class="card">
-          <div class="card-body px-3">
-            <h1 class="fw-semibold mb-4">Acceptor</h1>
-      <!-- table begin -->
-            <div class="card w-100">
-              <div class="card-body p-3">
-                <h5 class="card-title fw-semibold mb-4">Acceptor Details</h5>
-                <div class="table-responsive">
-                  <table class="table text-nowrap mb-0 align-middle">
-                    <thead class="text-dark fs-4">
-                      <tr>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Id</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Fname</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Lname</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">gender</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Mail</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Ph no</h6>
-                        </th>
-                        <th class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0">Password</h6>
-                        </th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      <% acceptors.forEach(function(acceptor) { %>
+    <!--  Header End -->
+    <!--  Header End -->
+    <div class="container-fluid px-2">
+      <div class="card">
+        <div class="card-body px-3">
+          <h1 class="fw-semibold mb-4">Acceptor</h1>
+          <!-- table begin -->
+          <div class="card w-100">
+            <div class="card-body p-3">
+              <h5 class="card-title fw-semibold mb-4">Acceptor Details</h5>
+              <div class="table-responsive">
+                <table class="table text-nowrap mb-0 align-middle">
+                  <thead class="text-dark fs-4">
                     <tr>
-                        <td class="border-bottom-0">
-                          <h6 class="fw-semibold mb-0"><%= acceptor.acc_id %></h6>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= acceptor.acc_fname %></p>                         
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= acceptor.acc_lname %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= acceptor.acc_gender %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= acceptor.acc_mail %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= acceptor.acc_phno %></p>
-                        </td>
-                        <td class="border-bottom-0">
-                          <p class="mb-0 fw-normal"><%= acceptor.acc_password %></p>
-                        </td> 
-                      </tr>      
-                      <% }); %>                  
-                    </tbody>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Id</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Fname</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Lname</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">gender</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Mail</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Ph no</h6>
+                      </th>
+                      <th class="border-bottom-0">
+                        <h6 class="fw-semibold mb-0">Password</h6>
+                      </th>
+                    </tr>
+                  </thead>
 
-                  </table>
-                </div>
+                  <tbody>
+                    <% acceptors.forEach(function(acceptor) { %>
+                      <tr>
+                        <td class="border-bottom-0">
+                          <h6 class="fw-semibold mb-0">
+                            <%= acceptor.acc_id %>
+                          </h6>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= acceptor.acc_fname %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= acceptor.acc_lname %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= acceptor.acc_gender %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= acceptor.acc_mail %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= acceptor.acc_phno %>
+                          </p>
+                        </td>
+                        <td class="border-bottom-0">
+                          <p class="mb-0 fw-normal">
+                            <%= acceptor.acc_password %>
+                          </p>
+                        </td>
+                      </tr>
+                      <% }); %>
+                  </tbody>
+
+                </table>
               </div>
             </div>
-<!-- table end -->
           </div>
+          <!-- table end -->
         </div>
       </div>
     </div>
-  </div>
+    </div>
+    </div>
 
-  <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
-  <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/admin/js/sidebarmenu.js"></script>
-  <script src="/admin/js/app.min.js"></script>
-  <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
-  <script src="/admin/js/dashboard.js"></script>
+    <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/sidebarmenu.js"></script>
+    <script src="/admin/js/app.min.js"></script>
+    <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
+    <script src="/admin/js/dashboard.js"></script>
 </body>
+
 </html>

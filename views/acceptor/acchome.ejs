@@ -36,14 +36,17 @@
   </div>
   <!-- for display after the preloader -->
   <div class="page">
-    <div id="requestToast" class="toast align-items-center rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="requestToast"
+      class="toast align-items-center rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3" role="alert"
+      aria-live="assertive" aria-atomic="true">
       <div class="p-2 d-flex align-items-center bg-danger text-white rounded-4">
-          <div class="toast-body fs-5">
-              <h5><i class="bi bi-check-circle"></i> &nbsp; &nbsp; <%= successMessage %> </h5>
-          </div>
-          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="toast-body fs-5">
+          <h5><i class="bi bi-check-circle"></i> &nbsp; &nbsp; <%= successMessage %>
+          </h5>
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-  </div>  
+    </div>
 
     <!-- navbar -->
     <div class="container rounded-bottom border-0 ">
@@ -355,7 +358,9 @@
         </ul>
       </footer>
       <!-- request Toast -->
-      <div id="requestToast2" class="toast align-items-center rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="requestToast2"
+        class="toast align-items-center rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3" role="alert"
+        aria-live="assertive" aria-atomic="true">
         <div class="p-2 d-flex align-items-center bg-danger text-white rounded-4">
           <div class="toast-body fs-5">
             Request sent successfully!
@@ -394,22 +399,22 @@
       bsToast.show();
     }
   </script>
-<script>
-  // Check if the request was sent successfully
-  const requestSent = "<%= requestSent %>";
+  <script>
+    // Check if the request was sent successfully
+    const requestSent = "<%= requestSent %>";
 
-  // If request was sent successfully, show the toast
-  if (requestSent === 'true') {
-    // Get the toast element
-    const toast = document.getElementById('requestToast2');
+    // If request was sent successfully, show the toast
+    if (requestSent === 'true') {
+      // Get the toast element
+      const toast = document.getElementById('requestToast2');
 
-    // Initialize Bootstrap toast
-    const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 3000 }); // Adjust delay as needed
+      // Initialize Bootstrap toast
+      const bsToast = new bootstrap.Toast(toast, { autohide: true, delay: 3000 }); // Adjust delay as needed
 
-    // Show the toast
-    bsToast.show();
-  }
-</script>
+      // Show the toast
+      bsToast.show();
+    }
+  </script>
 
 
 

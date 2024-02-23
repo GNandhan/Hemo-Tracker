@@ -10,83 +10,89 @@
 </head>
 
 <body>
-   <!-- including navbar -->
-   <%- include("admin-nav") %>
-      <!--  Header End -->
-      <div class="container-fluid">
-        <!--  Row 1 -->
+  <!-- including navbar -->
+  <%- include("admin-nav") %>
+    <!--  Header End -->
+    <div class="container-fluid">
+      <!--  Row 1 -->
 
-        <div class="row">
-          <div class="col-sm col-xl">
-            <div class="card overflow-hidden rounded-4 shadow">
-              <div class="card-body pt-3 p-4">
-                <div class="row align-items-center">
-                  <!-- Text content on the left -->
-                  <div class="col-md-8">
-                    <h6 class="fw-semibold fs-4">Total Users</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <h2 class="fw-bold mb-0"><%= totalSum %></h2>
-                    </div>
-                  </div>
-                  <!-- Image on the right -->
-                  <div class="col-md-4 text-end" style="padding-left: 5px;">
-                    <img src="/admin/images/user.png" alt="" width="100">
+      <div class="row">
+        <div class="col-sm col-xl">
+          <div class="card overflow-hidden rounded-4 shadow">
+            <div class="card-body pt-3 p-4">
+              <div class="row align-items-center">
+                <!-- Text content on the left -->
+                <div class="col-md-8">
+                  <h6 class="fw-semibold fs-4">Total Users</h6>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h2 class="fw-bold mb-0">
+                      <%= totalSum %>
+                    </h2>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-sm col-xl">
-            <div class="card overflow-hidden rounded-4 shadow">
-              <div class="card-body pt-3 p-4">
-                <div class="row align-items-center">
-                  <!-- Text content on the left -->
-                  <div class="col-md-8">
-                    <h6 class="fw-semibold fs-4">No of Acceptors</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <h2 class="fw-bold mb-0"><%= acceptorCount %></h2>
-                    </div>
-                  </div>
-                  <!-- Image on the right -->
-                  <div class="col-md-4 text-end" style="padding-left: 5px;">
-                    <img src="/admin/images/acceptor.png" alt="" width="100">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm col-xl">
-            <div class="card overflow-hidden rounded-4 shadow">
-              <div class="card-body pt-3 p-4">
-                <div class="row align-items-center">
-                  <!-- Text content on the left -->
-                  <div class="col-md-8">
-                    <h6 class="fw-semibold fs-4">No of Donors</h6>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <h2 class="fw-bold mb-0"><%= donorCount %></h2>
-                    </div>
-                  </div>
-                  <!-- Image on the right -->
-                  <div class="col-md-4 text-end" style="padding-left: 5px;">
-                    <img src="/admin/images/donor.png" alt="" width="100">
-                  </div>
+                <!-- Image on the right -->
+                <div class="col-md-4 text-end" style="padding-left: 5px;">
+                  <img src="/admin/images/user.png" alt="" width="100">
                 </div>
               </div>
             </div>
           </div>
         </div>
 
+        <div class="col-sm col-xl">
+          <div class="card overflow-hidden rounded-4 shadow">
+            <div class="card-body pt-3 p-4">
+              <div class="row align-items-center">
+                <!-- Text content on the left -->
+                <div class="col-md-8">
+                  <h6 class="fw-semibold fs-4">No of Acceptors</h6>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h2 class="fw-bold mb-0">
+                      <%= acceptorCount %>
+                    </h2>
+                  </div>
+                </div>
+                <!-- Image on the right -->
+                <div class="col-md-4 text-end" style="padding-left: 5px;">
+                  <img src="/admin/images/acceptor.png" alt="" width="100">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm col-xl">
+          <div class="card overflow-hidden rounded-4 shadow">
+            <div class="card-body pt-3 p-4">
+              <div class="row align-items-center">
+                <!-- Text content on the left -->
+                <div class="col-md-8">
+                  <h6 class="fw-semibold fs-4">No of Donors</h6>
+                  <div class="d-flex align-items-center justify-content-between">
+                    <h2 class="fw-bold mb-0">
+                      <%= donorCount %>
+                    </h2>
+                  </div>
+                </div>
+                <!-- Image on the right -->
+                <div class="col-md-4 text-end" style="padding-left: 5px;">
+                  <img src="/admin/images/donor.png" alt="" width="100">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
-  </div>
-  <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
-  <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/admin/js/sidebarmenu.js"></script>
-  <script src="/admin/js/app.min.js"></script>
-  <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
-  <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
-  <script src="/admin/js/dashboard.js"></script>
+    </div>
+    </div>
+    <script src="/admin/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/admin/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/js/sidebarmenu.js"></script>
+    <script src="/admin/js/app.min.js"></script>
+    <script src="/admin/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/admin/libs/simplebar/dist/simplebar.js"></script>
+    <script src="/admin/js/dashboard.js"></script>
 </body>
 
 </html>

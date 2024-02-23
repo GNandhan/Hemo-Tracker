@@ -80,8 +80,8 @@ app.post('/dreg', encoder, function (req, res) {
       return res.status(500).send("Error registering user.");
     }
     console.log("User registered successfully!");
-     // Send a success email to the registered donor
-     var mailOptions = {
+    // Send a success email to the registered donor
+    var mailOptions = {
       from: 'hemotracker2024@gmail.com', // Your email address
       to: req.body.email, // Donor's email address
       subject: 'Registration Successful',
@@ -182,7 +182,7 @@ app.post('/approveRequest/:requestId', (req, res) => {
   connection.query('UPDATE request SET status = "accepted" WHERE req_id = ?', [requestId], (error, results, fields) => {
     if (error) {
       console.log('Error updating request status:', error);
-      res.status(500).send('Internal Server Error');
+      return res.status(500).send('Internal Server Error');
     } else {
       // Fetch request details including donor and acceptor information
       connection.query(
@@ -273,7 +273,7 @@ app.post('/accept/accreg', encoder, function (req, res) {
       res.redirect('/accept/acclog?success=1'); // Add success parameter here
 
       // Send an email to the registered acceptor
-      var  mailOptions = {
+      var mailOptions = {
         from: 'hemotracker2024@gmail.com', // Your email address
         to: req.body.email, // Acceptor's email address
         subject: 'Registration Successful',
