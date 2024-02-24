@@ -54,7 +54,8 @@
     }
 
     .blood-bank-navbar {
-      background: linear-gradient(to bottom, #ffffffb6, #ffffff77);
+      /* background: linear-gradient(to bottom, #ffffffb6, #ffffff77); */
+      background-color: rgb(255, 255, 255);
       /* Gradient colors */
       color: white;
       /* Text color */
@@ -108,19 +109,17 @@
     </svg>
   </div>
   <!-- for display after the preloader -->
-  <div class="page">
-    <!-- ---Carousel------ -->
-    <div class="container-fluid">
-      <div class="row p-0">
-        <div class="col-lg col-md col-sm col p-0">
+  <div class="page" style="background-color: rgba(255, 255, 255, 0.63);">
+
+
           <!-- navbar -->
-          <div class="container rounded-4 sticky-top blood-bank-navbar" id="navbar">
-            <header class="d-flex flex-wrap justify-content-center mt-4">
+          <div class="container-fluid rounded-4 sticky-top blood-bank-navbar shadow-lg p-0" id="navbar">
+            <header class="d-flex flex-wrap  align-items-center p-0 m-0">
               <a href="/"
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                class="d-flex align-items-center mb-md-0 me-md-auto px-3 py-2 bg-danger link-body-emphasis text-decoration-none">
                 <img src="user/images/icon.png" class="bi me-2" width="50" height="50">
-                <span class="fs-2 fw-bold" style="font-family: 'Questrial';">Hemo <span
-                    class="text-danger">Tracker</span></span>
+                <span class="fs-2 fw-bold text-light" style="font-family: 'Questrial';">Hemo <span
+                    class="text-white">Tracker</span></span>
               </a>
               <ul class="nav">
                 <li class="nav-item"><a href="#login-section" class="nav-link text-dark fs-5">Login</a></li>
@@ -129,7 +128,14 @@
           </div>
           <!-- navbar closed -->
 
-          <div class="carousel-container" style="margin-top: -80px;">
+
+    <!-- ---Carousel------ -->
+    <div class="container-fluid">
+      <div class="row p-0">
+        <div class="col-lg col-md col-sm col p-0">
+
+
+          <div class="carousel-container" >
             <div id="carouselExampleAutoplaying" class="carousel slide rounded-4" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2000">
@@ -292,12 +298,12 @@
         </div>
         <div class="col-lg col-md col-sm-12 col-12 count" id="donors">
           <img src="/user/images/c2.png" alt="Icons">
-          <div class="counter" data-count="438">0</div>
+          <div class="counter" data-count="836">0</div>
           <h5>HAPPY DONORS</h5>
         </div>
         <div class="col-lg col-md col-sm-12 col-12 count" id="recipients">
           <img src="/user/images/c4.png" alt="Icons">
-          <div class="counter" data-count="389">0</div>
+          <div class="counter" data-count="759">0</div>
           <h5>HAPPY RECIPIENTS</h5>
         </div>
       </div>
