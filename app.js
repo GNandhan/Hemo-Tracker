@@ -124,7 +124,7 @@ app.post('/dlog', encoder, function (req, res) {
     } else {
       // If user does not exist or credentials are incorrect, render an error message or redirect back to login page
       console.log("Invalid email or password");
-      res.redirect('/dlog');
+      res.redirect('/dlog?error=1');
     }
   });
 });

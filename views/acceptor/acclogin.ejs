@@ -54,6 +54,18 @@
         </div>
       </div>
     </div>
+    <!-- div to display error toast message -->
+    <div id="errorToast"
+      class="toast align-items-center text-white bg-danger border-0 rounded-4 position-fixed top-0 start-50 translate-middle-x mt-3"
+      role="alert" aria-live="assertive" aria-atomic="true" style="display: none;">
+      <div class="p-2 d-flex">
+        <div class="toast-body">
+          Invalid email or password.
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
     <!-- navbar -->
     <div class="container">
       <header class="d-flex flex-wrap justify-content-center py-2 mb-4 border-bottom">
@@ -182,6 +194,14 @@
       if (successQueryParam === '1') {
         const successMessage = new bootstrap.Toast(document.getElementById('toast'));
         successMessage.show();
+      }
+    });
+    // script for displaying toast while error
+    document.addEventListener("DOMContentLoaded", function () {
+      const errorMessage = new URLSearchParams(window.location.search).get('error');
+      if (errorMessage === '1') {
+        const errorToast = document.getElementById('errorToast');
+        errorToast.style.display = 'block';
       }
     });
   </script>
