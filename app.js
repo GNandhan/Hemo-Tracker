@@ -147,7 +147,7 @@ app.get('/home', (req, res) => {
           console.log('Error fetching donor data from the database:', error);
           res.status(500).send('Internal Server Error');
         } else {
-          // Fetch request data for the logged-in donor including acceptor details
+          // Fetch request data for the logged-in donor including acceptor details and request status
           connection.query(
             'SELECT r.req_id, r.donor_id, r.acceptor_id, r.status, a.acc_fname, a.acc_lname, a.acc_gender, a.acc_mail, a.acc_phno ' +
             'FROM request r ' +
@@ -179,7 +179,7 @@ app.post('/approveRequest/:requestId', (req, res) => {
   const requestId = req.params.requestId;
 
   // Update the status of the request in the database from "pending" to "accepted"
-  connection.query('UPDATE request SET status = "accepted" WHERE req_id = ?', [requestId], (error, results, fields) => {
+  connection.query('UPDATE request SET status = "active" WHERE req_id = ?', [requestId], (error, results, fields) => {
     if (error) {
       console.log('Error updating request status:', error);
       return res.status(500).send('Internal Server Error');
@@ -308,11 +308,11 @@ app.post('/accept/acclog', encoder, function (req, res) {
     }
     // If user exists, store user data in session and redirect to home page
     if (results.length > 0) {
-// Save user data in session upon successful login
-req.session.user = results[0];
-console.log("User logged in successfully!");
-console.log("Acceptor details:", req.session.user); // Log acceptor details
-res.redirect('/accept/acchom');
+      // Save user data in session upon successful login
+      req.session.user = results[0];
+      console.log("User logged in successfully!");
+      console.log("Acceptor details:", req.session.user); // Log acceptor details
+      res.redirect('/accept/acchom');
 
     } else {
       // If user does not exist or credentials are incorrect, redirect back to login page with an error query parameter
@@ -396,18 +396,18 @@ app.post('/accept/sendRequest', encoder, function (req, res) {
   // Log donorId to check its value
   console.log("Donor ID:", donorId);
 
-// Retrieve acceptor details from the session or wherever you store them
-const acceptorDetails = req.session.user;
+  // Retrieve acceptor details from the session or wherever you store them
+  const acceptorDetails = req.session.user;
 
-// Log acceptor details for debugging
-console.log("Acceptor details from session:", acceptorDetails);
+  // Log acceptor details for debugging
+  console.log("Acceptor details from session:", acceptorDetails);
 
-// Check if acceptor details are available
-if (!acceptorDetails || !acceptorDetails.acc_id) {
-  console.error("Acceptor details not found in session.");
-  console.log("Session data:", req.session); // Log session data
-  return res.status(500).send("Error sending request. Acceptor details not found.");
-}
+  // Check if acceptor details are available
+  if (!acceptorDetails || !acceptorDetails.acc_id) {
+    console.error("Acceptor details not found in session.");
+    console.log("Session data:", req.session); // Log session data
+    return res.status(500).send("Error sending request. Acceptor details not found.");
+  }
 
 
   // Store the request details in the database

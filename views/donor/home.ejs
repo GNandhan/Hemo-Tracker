@@ -203,7 +203,6 @@
                           <a href="#" class="btn btn-danger rounded-4"
                             onclick="approveRequest('<%= request.req_id %>')">Approve</a>
                           <% } %>
-
                     </div>
                   </div>
                   <% }); %>
@@ -344,7 +343,7 @@
           throw new Error('Network response was not ok.');
         })
         .then(data => {
-          console.log(data);
+          console.log(data); // Log the response from the server
         })
         .catch(error => {
           console.error('Error:', error);
