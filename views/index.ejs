@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,27 +19,22 @@
       transition: 1.5s;
       /* Add smooth transition effect */
     }
-
     .sticky-navbar {
       position: fixed;
       width: 100%;
       top: 0;
       z-index: 1000;
     }
-
     .bg-forward {
       z-index: 1;
     }
-
     .card {
       backdrop-filter: blur(8px);
       /* Adjust the blur intensity as needed */
     }
-
     .card {
       position: relative;
     }
-
     .card::before {
       content: "";
       position: absolute;
@@ -52,7 +46,6 @@
       /* Adjust the blur intensity as needed */
       z-index: -1;
     }
-
     .blood-bank-navbar {
       /* background: linear-gradient(to bottom, #ffffffb6, #ffffff77); */
       background-color: rgb(255, 255, 255);
@@ -60,44 +53,36 @@
       color: white;
       /* Text color */
     }
-
     #navbar {
       transition: width 1s ease;
       /* Add smooth transition effect */
     }
-
     /* donor and receiver login card */
     .section3 {
       margin-top: -80px;
     }
-
     /* Media query for tablet and mobile screens */
     @media only screen and (max-width: 992px) {
       .section3 {
         margin-top: 0;
         /* Resetting margin-top for smaller screens */
       }
-
       .col-lg-6:hover .bi-box-arrow-in-right {
         color: red;
       }
-
       .bg-forward {
         z-index: 1;
       }
     }
-
     .counter {
       font-size: 50px;
     }
-
     .carousel-caption {
       text-align: left;
       left: 10%;
     }
   </style>
 </head>
-
 <body class="main">
   <!-- Preloader -->
   <div class="preloader">
@@ -110,28 +95,28 @@
   </div>
   <!-- for display after the preloader -->
   <div class="page" style="background-color: rgba(255, 255, 255, 0.63);">
-          <!-- navbar -->
-          <div class="container-fluid rounded-4 sticky-top blood-bank-navbar shadow-lg p-0" id="navbar">
-            <header class="d-flex flex-wrap  align-items-center p-0 m-0">
-              <a href="/"
-                class="d-flex align-items-center mb-md-0 me-md-auto px-3 py-2 bg-danger link-body-emphasis text-decoration-none">
-                <img src="user/images/icon.png" class="bi me-2" width="50" height="50">
-                <span class="fs-2 fw-bold text-light" style="font-family: 'Questrial';">Hemo <span
-                    class="text-white">Tracker</span></span>
-              </a>
-              <ul class="nav">
-                <li class="nav-item"><a href="#login-section" class="nav-link text-dark fs-5">Login</a></li>
-              </ul>
-            </header>
-          </div>
-          <!-- navbar closed -->
+    <!-- navbar -->
+    <div class="container-fluid rounded-4 sticky-top blood-bank-navbar shadow-lg p-0" id="navbar">
+      <header class="d-flex flex-wrap  align-items-center p-0 m-0">
+        <a href="/"
+          class="d-flex align-items-center mb-md-0 me-md-auto px-3 py-2 bg-danger link-body-emphasis text-decoration-none">
+          <img src="user/images/icon.png" class="bi me-2" width="50" height="50">
+          <span class="fs-2 fw-bold text-light" style="font-family: 'Questrial';">Hemo <span
+              class="text-white">Tracker</span></span>
+        </a>
+        <ul class="nav">
+          <li class="nav-item"><a href="#login-section" class="nav-link text-dark fs-5">Login</a></li>
+        </ul>
+      </header>
+    </div>
+    <!-- navbar closed -->
 
 
     <!-- ---Carousel------ -->
     <div class="container-fluid">
       <div class="row p-0">
         <div class="col-lg col-md col-sm col p-0">
-          <div class="carousel-container" >
+          <div class="carousel-container">
             <div id="carouselExampleAutoplaying" class="carousel slide rounded-4" data-bs-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active" data-bs-interval="2000">
@@ -482,5 +467,4 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
