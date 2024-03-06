@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
 const encoder = bodyParser.urlencoded();
 
 const app = express();
-const port = 4000;
+const port = 5000;
 
 // Set up sessions
 app.use(
@@ -312,7 +312,7 @@ app.post('/accept/acclog', encoder, function (req, res) {
       req.session.user = results[0];
       console.log("User logged in successfully!");
       console.log("Acceptor details:", req.session.user); // Log acceptor details
-      res.redirect('/accept/acchom');
+      res.redirect('/accept/acchom?success=1');
 
     } else {
       // If user does not exist or credentials are incorrect, redirect back to login page with an error query parameter
