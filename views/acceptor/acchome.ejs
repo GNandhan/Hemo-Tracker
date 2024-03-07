@@ -250,7 +250,14 @@
                           </p>
                           <form action="/accept/sendRequest" method="post">
                             <input type="hidden" name="donorId" id="donorId" value="<%= donor.don_id %>">
-                            <button type="submit" class="btn btn-danger rounded-4">Send Request</button>
+                            <!-- <button type="submit" class="btn btn-danger rounded-4">Send Request</button> -->
+                            <% if (requestSent) { %>
+                              <!-- If request has been sent, display "Send Again" -->
+                              <button type="submit" class="btn btn-danger rounded-4">Send Again</button>
+                          <% } else { %>
+                              <!-- If request has not been sent, display "Send Request" -->
+                              <button type="submit" class="btn btn-danger rounded-4">Send Request</button>
+                          <% } %>
                           </form>
                         </div>
                       </div>
